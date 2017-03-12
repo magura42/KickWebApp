@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import { Club } from '../model/club';
+import {LoginService} from "../service/login.service";
 
 @Component({
   selector: 'app-club-info',
@@ -11,7 +12,7 @@ export class ClubInfoComponent implements OnInit {
   @Input()
   club: Club;
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }

@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
+  username: 'mharrer',
+  password: 'mharrer',
   backendUrl: 'http://localhost:9000/'
 };

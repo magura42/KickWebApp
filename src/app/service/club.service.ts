@@ -21,6 +21,31 @@ export class ClubService {
         .catch(this.handleError);
   }
 
+  delete(clubid: number): Promise<void> {
+    const url = `${environment.backendUrl}club/${clubid}`;
+    return this.http.delete(url, {headers: this.headers})
+        .toPromise()
+        .then(() => null)
+        .catch(this.handleError);
+  }
+
+  create(name: string): Promise<Club> {
+    return this.http
+        .post(environment.backendUrl+'club', JSON.stringify({name: name}), {headers: this.headers})
+        .toPromise()
+        .then(res => res.json())
+        .catch(this.handleError);
+  }
+
+  update(club: Club): Promise<Club> {
+    const url = `${environment.backendUrl}club/${club.clubid}`;
+    return this.http
+        .put(url, JSON.stringify(club), {headers: this.headers})
+        .toPromise()
+        .then(() => club)
+        .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

@@ -1,7 +1,12 @@
 <div *ngIf="club">
-  <h2>Mein Verein: {{club.name}}</h2>
+  <h2>Vereinsname: {{club.name}}</h2>
   <div>
     <label>Name: </label>
     <input [(ngModel)]="club.name" placeholder="Mein Verein"/>
   </div>
+
+  <button (click)="goBack()">Zurück</button>
+
+  <button (click)="save()">Speichern</button>
+
 </div>

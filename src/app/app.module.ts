@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ClubService } from './service/club.service';
+import { LoginService } from './service/login.service';
 import { PersonService } from './service/person.service';
 
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { PersonDetailComponent } from './person-detail/person-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClubInfoComponent } from './club-info/club-info.component';
 import { ClubDetailComponent } from './club-detail/club-detail.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { ClubDetailComponent } from './club-detail/club-detail.component';
     PersonDetailComponent,
     DashboardComponent,
     ClubInfoComponent,
-    ClubDetailComponent
+    ClubDetailComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { ClubDetailComponent } from './club-detail/club-detail.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ ClubService, PersonService ],
+  providers: [ ClubService, PersonService, LoginService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

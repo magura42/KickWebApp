@@ -5,4 +5,5 @@ export class Person {
     street: string;
     zipcode: string;
     city: string;
+    coached: number;
 }
