@@ -1,0 +1,26 @@
+<div class="container">
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#kickapp-navbar-collapse" aria-controls="kickapp-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <h1 class="navbar-brand mb-0">KickApp</h1>
+
+  <div class="collapse navbar-collapse" id="kickapp-navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="/dashboard" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/team" routerLinkActive="active">Mannschaft</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/clubdetail" routerLinkActive="active">Club</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
