@@ -15,6 +15,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClubInfoComponent } from './club-info/club-info.component';
 import { ClubDetailComponent } from './club-detail/club-detail.component';
 import { TeamComponent } from './team/team.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { EventsOverviewComponent } from './events-overview/events-overview.component';
+import { EventCardComponent } from './event-card/event-card.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,13 @@ import { TeamComponent } from './team/team.component';
     DashboardComponent,
     ClubInfoComponent,
     ClubDetailComponent,
-    TeamComponent
+    TeamComponent,
+    NavbarComponent,
+    HeaderComponent,
+    FooterComponent,
+    EventsOverviewComponent,
+    EventCardComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,9 @@ export class AppComponent  implements OnInit {
 
   title = 'KickWebApp v0.1';
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService) {
+    this.initSessionData();
+  }
 
   initSessionData(): void {
     this.loginService.login(environment.username, environment.password).then(sessionData => {
@@ -22,6 +24,6 @@ export class AppComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.initSessionData();
+
   }
 }

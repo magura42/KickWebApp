@@ -1,0 +1,10 @@
+.event {
+    &.card {
+        .card-title {
+            display: inline;
+        }
+        .badges {
+            float: right;
+        }
+    }
+}
