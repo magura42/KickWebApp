@@ -8,7 +8,7 @@ import {SessionData} from './model/sessionData';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  implements OnInit {
+export class AppComponent implements OnInit {
 
   title = 'KickWebApp v0.1';
 
