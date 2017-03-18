@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { EventsOverviewComponent } from './events-overview/events-overview.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { EventsComponent } from './component/events/events.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     FooterComponent,
     EventsOverviewComponent,
     EventCardComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
