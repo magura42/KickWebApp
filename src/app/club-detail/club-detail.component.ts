@@ -1,39 +1,45 @@
-import {Component, OnInit, Input} from '@angular/core';
-import { Club } from '../model/club';
+import {Component, OnInit} from "@angular/core";
+import {Club} from "../model/club";
 import {ClubService} from "../service/club.service";
-import { Location }               from '@angular/common';
+import {Location} from "@angular/common";
 import {LoginService} from "../service/login.service";
+import {CommonComponent} from "../component/common/CommonComponent";
 
 @Component({
-  selector: 'app-club-detail',
-  templateUrl: './club-detail.component.html',
-  styleUrls: ['./club-detail.component.css']
+    selector: 'app-club-detail',
+    templateUrl: './club-detail.component.html',
+    styleUrls: ['./club-detail.component.scss']
 })
 export class ClubDetailComponent implements OnInit {
 
-  club: Club;
+    club:Club;
 
-  constructor(
-    private clubService: ClubService,
-    private loginService: LoginService,
-    private location: Location
-  ) { }
+    constructor(private loginService:LoginService, private clubService:ClubService, private location:Location) {
+        this.getClub();
+    }
 
-  getClub(): void {
-    this.clubService.getClub(this.loginService.getSessionData().clubid).then(club => this.club = club);
-  }
+    getClub():void {
+        this.clubService.getClub(this.loginService.getSessionData().clubid).then(club => {
+            this.club = club;
+            console.log("club: " + this.club.name);
+        });
+    }
 
-  ngOnInit() {
-    this.getClub();
-  }
+    isAdmin(): boolean {
+        return this.loginService.isAdmin();
+    }
 
-  save(): void {
-    this.clubService.update(this.club)
-        .then(() => this.goBack());
-  }
+    ngOnInit() {
 
-  goBack(): void {
-    this.location.back();
-  }
+    }
+
+    save():void {
+        this.clubService.update(this.club)
+            .then(() => this.goBack());
+    }
+
+    goBack():void {
+        this.location.back();
+    }
 
 }

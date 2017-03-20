@@ -10,14 +10,14 @@ export class LoginService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
 
-    private sessionData: SessionData;
+    private sessionData:SessionData;
 
     constructor(private http:Http, private personService:PersonService) {
     }
 
     login(username:string, password:string):Promise<SessionData> {
 
-        let data = { "username": username, "password": password};
+        let data = {"username": username, "password": password};
 
         this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}login`;
@@ -29,12 +29,16 @@ export class LoginService {
             .catch(this.handleError);
     }
 
-    getSessionData(): SessionData {
+    getSessionData():SessionData {
         return this.sessionData;
     }
 
     setSessionData(sessiondata) {
         this.sessionData = sessiondata;
+    }
+
+    isAdmin():boolean {
+        return this.sessionData.role === 'coach';
     }
 
     private handleError(error:any):Promise<any> {
