@@ -1,4 +1,4 @@
-
+<div *ngIf="sessionData">
     <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse"
          xmlns:height="http://www.w3.org/1999/xhtml">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -18,16 +18,16 @@
                     <a class="nav-link" routerLink="/events" routerLinkActive="active">Termine</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/team" routerLinkActive="active">Mannschaft</a>
+                    <a class="nav-link" [routerLink]="['/team', sessionData.teamid]" routerLinkActive="active">Mannschaft</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/clubdetail" routerLinkActive="active">Verein</a>
+                    <a class="nav-link" [routerLink]="['/clubdetail', sessionData.clubid]" routerLinkActive="active">Verein</a>
                 </li>
             </ul>
         </div>
     </nav>
+</div>
 
-    <div style="height: 75px;">blabla</div>
-    <router-outlet></router-outlet>
+<div style="height: 75px;"></div>
 
-
+<router-outlet></router-outlet>

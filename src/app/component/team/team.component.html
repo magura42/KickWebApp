@@ -1,0 +1,82 @@
+<div *ngIf="team">
+
+    <tabset #staticTabs>
+        <tab heading="Spieler" customClass="navTab">
+            <table class="table table-hover table-sm">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    <th>Nachname</th>
+                    <th>Vorname</th>
+                    <th>Telefon</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>089/12345678</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>089/12345678</td>
+                </tr>
+                </tbody>
+            </table>
+        </tab>
+        <tab heading="Trainer" customClass="navTab">
+            <table class="table table-hover table-sm">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    <th>Nachname</th>
+                    <th>Vorname</th>
+                    <th>Geburtsdatum</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
+        </tab>
+        <tab heading="Informationen" customClass="navTab">
+            <div class="card col-md-12 col-lg-6">
+                <div class="card-block">
+                    <ckeditor *ngIf="isAdmin()"
+                            [(ngModel)]="team.info"
+                            [config]="config">
+                    </ckeditor>
+                    <div *ngIf="!isAdmin()" [innerHTML]="team.info">
+                    </div>
+                    <div *ngIf="isAdmin()" class="button-bar">
+                        <button class="btn btn-sm btn-outline-primary" (click)="save()">Speichern</button>
+                        <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Zurück</button>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+
+
+</div>
+

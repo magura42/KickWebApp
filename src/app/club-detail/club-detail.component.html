@@ -1,5 +1,6 @@
+
 <div *ngIf="club">
-    <div class="card col-md-6">
+    <div class="card col-md-12 col-lg-6">
 
         <img *ngIf="club.logo" class="card-img-top" src="..." alt="Card image cap">
         <div class="card-block">
@@ -7,49 +8,49 @@
                 <label class="col-sm-4 col-form-label">Vereinsname</label>
                 <div class="col-sm-8">
                     <input [disabled]="!isAdmin()" [(ngModel)]="club.name" type="text"
-                           class="form-control-static">
+                           class="col-12 form-control-static">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Straße</label>
                 <div class="col-sm-8">
-                    <input [disabled]="!isAdmin()" [(ngModel)]="club.street" type="text" class="form-control-static">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="club.street" type="text" class="col-12 form-control-static">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Postleitzahl</label>
                 <div class="col-sm-8">
-                    <input [disabled]="!isAdmin()" [(ngModel)]="club.zipcode" type="text" class="form-control-static">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="club.zipcode" type="text" class="col-12 form-control-static">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Ort</label>
                 <div class="col-sm-8">
-                    <input [disabled]="!isAdmin()" [(ngModel)]="club.city" type="text" class="form-control-static">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="club.city" type="text" class="col-12 form-control-static">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Kontakt</label>
                 <div class="col-sm-8">
-                    <input [disabled]="!isAdmin()" [(ngModel)]="club.contact" type="text" class="form-control-static">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="club.contact" type="text" class="col-12 form-control-static">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">E-Mail</label>
                 <div class="col-sm-8">
-                    <input [disabled]="!isAdmin()" [(ngModel)]="club.email" type="email" class="form-control-static">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="club.email" type="email" class="col-12 form-control-static">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Telefon</label>
                 <div class="col-sm-8">
-                    <input [disabled]="!isAdmin()" [(ngModel)]="club.telefon" type="text" class="form-control-static">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="club.telefon" type="text" class="col-12 form-control-static">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Web</label>
                 <div class="col-sm-8">
-                    <input [disabled]="!isAdmin()" [(ngModel)]="club.web" type="url" class="form-control-static">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="club.web" type="url" class="col-12 form-control-static">
                 </div>
             </div>
         </div>

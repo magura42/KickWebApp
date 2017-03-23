@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 
   title = 'KickWebApp v0.1';
 
+  sessionData: SessionData;
+
   constructor(private loginService: LoginService) {
     this.initSessionData();
   }
@@ -20,6 +22,7 @@ export class AppComponent implements OnInit {
     this.loginService.login(environment.username, environment.password).then(sessionData => {
       console.log("session data: "+ sessionData.personname);
       this.loginService.setSessionData(sessionData);
+      this.sessionData = sessionData;
     });
   }
 

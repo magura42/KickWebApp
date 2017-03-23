@@ -3,7 +3,7 @@ import {Club} from "../model/club";
 import {ClubService} from "../service/club.service";
 import {Location} from "@angular/common";
 import {LoginService} from "../service/login.service";
-import {CommonComponent} from "../component/common/CommonComponent";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-club-detail',
@@ -14,14 +14,11 @@ export class ClubDetailComponent implements OnInit {
 
     club:Club;
 
-    constructor(private loginService:LoginService, private clubService:ClubService, private location:Location) {
-        this.getClub();
-    }
-
-    getClub():void {
-        this.clubService.getClub(this.loginService.getSessionData().clubid).then(club => {
+    constructor(private loginService:LoginService, private clubService:ClubService, private location:Location,
+                private route: ActivatedRoute) {
+        let id = +this.route.snapshot.params['id'];
+        this.clubService.getClub(id).then(club => {
             this.club = club;
-            console.log("club: " + this.club.name);
         });
     }
 
