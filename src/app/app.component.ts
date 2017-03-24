@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from "./service/login.service";
 import {environment} from '../environments/environment';
 import {SessionData} from './model/sessionData';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,8 @@ export class AppComponent implements OnInit {
 
   sessionData: SessionData;
 
-  constructor(private loginService: LoginService) {
-    this.initSessionData();
+  constructor(private loginService: LoginService, private router: Router) {
+    console.log("constructor AppComponent");
   }
 
   initSessionData(): void {
@@ -23,10 +24,12 @@ export class AppComponent implements OnInit {
       console.log("session data: "+ sessionData.personname);
       this.loginService.setSessionData(sessionData);
       this.sessionData = sessionData;
+      this.router.navigate(['/dashboard', sessionData.clubid]);
     });
   }
 
   ngOnInit() {
-
+    console.log("ngOnInit AppComponent");
+    this.initSessionData();
   }
 }

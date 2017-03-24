@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ClubService} from "../service/club.service";
 import {Club} from "../model/club";
 import {LoginService} from "../service/login.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,22 +11,28 @@ import {LoginService} from "../service/login.service";
 })
 export class DashboardComponent implements OnInit {
 
-  currentClub: Club;
+  clubId: number;
 
-  constructor(private clubService: ClubService, private loginService: LoginService) { }
+  constructor(private clubService: ClubService, private loginService: LoginService,
+              private route: ActivatedRoute) {
+    this.clubId = +this.route.snapshot.params['id'];
+    console.log("constructor DashboardComponent");
 
-  getCurrentClub(): void {
-
-    this.clubService.getClub(this.loginService.getSessionData().clubid).then(club => {
-      console.log("test"+ club);
-      this.currentClub = club
-    });
   }
 
+  // getCurrentClub(): void {
+  //
+  //   this.clubService.getClub(this.loginService.getSessionData().clubid).then(club => {
+  //     console.log("test"+ club);
+  //     this.currentClub = club
+  //   });
+  // }
+
   ngOnInit() {
-    if (typeof this.loginService.getSessionData() !== 'undefined') {
-      this.getCurrentClub();
-    }
+    console.log("ngOnInit DashboardComponent");
+    // if (typeof this.loginService.getSessionData() !== 'undefined') {
+    //   this.getCurrentClub();
+    // }
   }
 
 }

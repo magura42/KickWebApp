@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-events-overview',
@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsOverviewComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  clubId: number;
+
+  constructor() {
+    console.log("constructor EventsOverviewComponent...");
+  }
 
   ngOnInit() {
   }

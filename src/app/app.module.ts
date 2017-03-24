@@ -7,14 +7,12 @@ import {AppRoutingModule} from "./app-routing.module";
 import {ClubService} from "./service/club.service";
 import {LoginService} from "./service/login.service";
 import {PersonService} from "./service/person.service";
-import {TeamService} from "./service/team.service";
 import {AppComponent} from "./app.component";
 import {PersonDetailComponent} from "./person-detail/person-detail.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ClubInfoComponent} from "./club-info/club-info.component";
 import {ClubDetailComponent} from "./club-detail/club-detail.component";
 import {TeamComponent} from "./component/team/team.component";
-import {NavbarComponent} from "./navbar/navbar.component";
 import {FooterComponent} from "./footer/footer.component";
 import {EventsOverviewComponent} from "./events-overview/events-overview.component";
 import {EventCardComponent} from "./event-card/event-card.component";
@@ -30,7 +28,6 @@ import {CKEditorModule} from "ng2-ckeditor";
         ClubInfoComponent,
         ClubDetailComponent,
         TeamComponent,
-        NavbarComponent,
         FooterComponent,
         EventsOverviewComponent,
         EventCardComponent,

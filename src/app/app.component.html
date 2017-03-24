@@ -1,4 +1,40 @@
-<div class="container" *ngIf="sessionData">
-    <app-navbar [sessionData]="sessionData">Loading navbar...</app-navbar>
+<!--<div class="container" *ngIf="sessionData">-->
+    <!--<app-navbar [sessionData]="sessionData">Loading navbar...</app-navbar>-->
+<!--</div>-->
+
+
+<div *ngIf="sessionData" class="container">
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse"
+         xmlns:height="http://www.w3.org/1999/xhtml">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#kickapp-navbar-collapse"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <h1 class="navbar-brand">KickApp</h1>
+
+        <div class="collapse navbar-collapse" id="kickapp-navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/dashboard', sessionData.clubid]" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/events" routerLinkActive="active">Termine</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/team', sessionData.teamid]" routerLinkActive="active">Mannschaft</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/clubdetail', sessionData.clubid]" routerLinkActive="active">Verein</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
 
+<div style="height: 75px;"></div>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

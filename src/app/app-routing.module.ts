@@ -1,6 +1,5 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { PersonDetailComponent }  from './person-detail/person-detail.component';
 import { DashboardComponent }  from './dashboard/dashboard.component';
 import { ClubDetailComponent }  from './club-detail/club-detail.component';
@@ -10,8 +9,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
 import {EventsComponent} from "./component/events/events.component";
 
 const routes: Routes = [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    { path: 'dashboard', component: DashboardComponent },
+    { path: 'dashboard/:id', component: DashboardComponent },
     { path: 'team/:id', component: TeamComponent },
     { path: 'events', component: EventsComponent },
     { path: 'persondetail/:id', component: PersonDetailComponent },
