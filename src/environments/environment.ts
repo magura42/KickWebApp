@@ -7,5 +7,6 @@ export const environment = {
   production: false,
   username: 'mharrer',
   password: 'mharrer',
-  backendUrl: 'http://localhost:9000/'
+  //backendUrl: 'http://localhost:9000/'
+  backendUrl: 'https://kickappserver.herokuapp.com/'
 };
