@@ -18,7 +18,7 @@ export class LoginService {
     login(username:string, password:string):Promise<SessionData> {
 
         let data = {"username": username, "password": password};
-
+console.log("backendUrl: ${environment.backendUrl}");
         this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}login`;
         return this.http.post(url, JSON.stringify(data), {headers: this.headers})
