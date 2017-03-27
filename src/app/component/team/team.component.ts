@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Team} from "../../model/team";
 import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
+import {Person} from "../../model/person";
 
 @Component({
     selector: 'app-team',
@@ -17,6 +18,10 @@ export class TeamComponent implements OnInit {
 
     team:Team;
 
+    coaches: Person[];
+
+    players: Person[];
+
     constructor(private location:Location, private teamService: TeamService,
                 private route: ActivatedRoute, private loginService: LoginService) {
         this.config = {
@@ -28,6 +33,12 @@ export class TeamComponent implements OnInit {
         let id = +this.route.snapshot.params['id'];
         this.teamService.getTeam(id).then(team => {
             this.team = team;
+        });
+        this.teamService.getCoaches(id).then(coaches => {
+            this.coaches = coaches;
+        });
+        this.teamService.getPlayers(id).then(players => {
+            this.players = players;
         });
     }
 

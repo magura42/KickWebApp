@@ -1,6 +1,6 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PersonDetailComponent }  from './person-detail/person-detail.component';
+import { PersonDetailComponent }  from './component/person-detail/person-detail.component';
 import { DashboardComponent }  from './dashboard/dashboard.component';
 import { ClubDetailComponent }  from './club-detail/club-detail.component';
 import { ClubInfoComponent }  from './club-info/club-info.component';

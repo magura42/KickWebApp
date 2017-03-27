@@ -8,21 +8,15 @@
                     <th>#</th>
                     <th>Nachname</th>
                     <th>Vorname</th>
-                    <th>Telefon</th>
+                    <th>Geburtsdatum</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>089/12345678</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>089/12345678</td>
+                <tr *ngFor="let player of players; let i = index;">
+                    <th scope="row">{{i}}</th>
+                    <td>{{player.lastname}}</td>
+                    <td>{{player.firstname}}</td>
+                    <td>{{player.birthday | date}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -34,27 +28,15 @@
                     <th>#</th>
                     <th>Nachname</th>
                     <th>Vorname</th>
-                    <th>Geburtsdatum</th>
+                    <th>Telefon</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                <tr *ngFor="let coach of coaches; let i = index;">
+                    <th scope="row">{{i}}</th>
+                    <td>{{coach.lastname}}</td>
+                    <td>{{coach.firstname}}</td>
+                    <td>{{coach.telephone}}</td>
                 </tr>
                 </tbody>
             </table>

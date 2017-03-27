@@ -6,4 +6,9 @@ export class Person {
     zipcode: string;
     city: string;
     coached: number;
+    telephone: string;
+    birthday: Date;
+    email: string;
+    login: string;
+    password: string;
 }

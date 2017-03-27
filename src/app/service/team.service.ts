@@ -3,6 +3,7 @@ import { Headers, Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 import {Team} from "../model/team";
+import {Person} from "../model/person";
 
 @Injectable()
 export class TeamService {
@@ -18,6 +19,26 @@ export class TeamService {
         .toPromise()
         .then(response =>
             response.json() as Team)
+        .catch(this.handleError);
+  }
+
+  getCoaches(teamid: number): Promise<Person[]> {
+    this.headers.append('Access-Control-Allow-Origin', '*');
+    const url = `${environment.backendUrl}team/${teamid}/coaches`;
+    return this.http.get(url, {headers: this.headers})
+        .toPromise()
+        .then(response =>
+            response.json() as Person[])
+        .catch(this.handleError);
+  }
+
+  getPlayers(teamid: number): Promise<Person[]> {
+    this.headers.append('Access-Control-Allow-Origin', '*');
+    const url = `${environment.backendUrl}team/${teamid}/players`;
+    return this.http.get(url, {headers: this.headers})
+        .toPromise()
+        .then(response =>
+            response.json() as Person[])
         .catch(this.handleError);
   }
 
