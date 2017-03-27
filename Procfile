@@ -1,1 +1,1 @@
-web npm start --environment=prod
+web ng serve --prod
