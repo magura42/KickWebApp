@@ -1,1 +1,67 @@
-test
+<div *ngIf="person">
+    <div class="card col-md-12 col-lg-6">
+
+        <div class="card-block">
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Name</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.firstname" type="text"
+                           class="col-12 form-control-static">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Vorname</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.firstname" type="text" class="col-12 form-control-static">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Straße</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.street" type="text" class="col-12 form-control-static">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Ort</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.city" type="text" class="col-12 form-control-static">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Telefon</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.telephone" type="text" class="col-12 form-control-static">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Geburtstag</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.birthday" type="date" class="col-12 form-control-static">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">E-Mail</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.email" type="email" class="col-12 form-control-static">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Login</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.login" type="text" class="col-12 form-control-static">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Passwort</label>
+                <div class="col-sm-8">
+                    <input [disabled]="!isAdmin()" [(ngModel)]="person.password" type="password" class="col-12 form-control-static">
+                </div>
+            </div>
+        </div>
+
+        <div class="button-bar">
+            <button *ngIf="isAdmin()" class="btn btn-sm btn-outline-primary" (click)="save()">Speichern</button>
+            <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Zurück</button>
+        </div>
+    </div>
+</div>

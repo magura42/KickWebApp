@@ -12,7 +12,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let player of players; let i = index;">
+                <tr *ngFor="let player of players; let i = index;" (dblclick)="showPersonDetails(player.personid);">
                     <th scope="row">{{i}}</th>
                     <td>{{player.lastname}}</td>
                     <td>{{player.firstname}}</td>
@@ -32,7 +32,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let coach of coaches; let i = index;">
+                <tr *ngFor="let coach of coaches; let i = index;" (dblclick)="showPersonDetails(player.personid);">
                     <th scope="row">{{i}}</th>
                     <td>{{coach.lastname}}</td>
                     <td>{{coach.firstname}}</td>

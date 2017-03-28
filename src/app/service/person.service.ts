@@ -13,10 +13,20 @@ export class PersonService {
   constructor(private http: Http) { }
 
   getPerson(personid: number): Promise<Person> {
-    const url = `${environment.backendUrl}/person/${personid}`;
-    return this.http.get(url)
+    this.headers.append('Access-Control-Allow-Origin', '*');
+    const url = `${environment.backendUrl}person/${personid}`;
+    return this.http.get(url, {headers: this.headers})
         .toPromise()
-        .then(response => response.json().data as Person)
+        .then(response => response.json() as Person)
+        .catch(this.handleError);
+  }
+
+  update(person: Person): Promise<Person> {
+    const url = `${environment.backendUrl}person/${person.personid}`;
+    return this.http
+        .put(url, JSON.stringify(person), {headers: this.headers})
+        .toPromise()
+        .then(() => person)
         .catch(this.handleError);
   }
 

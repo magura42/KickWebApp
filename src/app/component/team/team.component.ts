@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {TeamService} from "../../service/team.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Team} from "../../model/team";
 import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
@@ -22,7 +22,7 @@ export class TeamComponent implements OnInit {
 
     players: Person[];
 
-    constructor(private location:Location, private teamService: TeamService,
+    constructor(private router: Router, private location:Location, private teamService: TeamService,
                 private route: ActivatedRoute, private loginService: LoginService) {
         this.config = {
             toolbar: [
@@ -56,5 +56,10 @@ export class TeamComponent implements OnInit {
 
     goBack():void {
         this.location.back();
+    }
+
+    showPersonDetails(personId) {
+        console.log("personid: " + personId);
+        this.router.navigate(['/persondetail', personId]);
     }
 }
