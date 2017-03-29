@@ -4,39 +4,31 @@ import {ClubService} from "../../service/club.service";
 import {Location} from "@angular/common";
 import {LoginService} from "../../service/login.service";
 import {ActivatedRoute} from "@angular/router";
+import {CommonComponent} from "../common.component";
 
 @Component({
     selector: 'app-club-detail',
     templateUrl: './club-detail.component.html',
     styleUrls: ['./club-detail.component.scss']
 })
-export class ClubDetailComponent implements OnInit {
+export class ClubDetailComponent extends CommonComponent implements OnInit {
 
     club:Club;
 
-    constructor(private loginService:LoginService, private clubService:ClubService, private location:Location,
-                private route: ActivatedRoute) {
+    constructor(loginService:LoginService, private clubService:ClubService, location:Location,
+                private route:ActivatedRoute) {
+        super(loginService, location);
         let id = +this.route.snapshot.params['id'];
         this.clubService.getClub(id).then(club => {
             this.club = club;
         });
     }
 
-    isAdmin(): boolean {
-        return this.loginService.isAdmin();
-    }
-
     ngOnInit() {
-
     }
 
     save():void {
         this.clubService.update(this.club)
             .then(() => this.goBack());
     }
-
-    goBack():void {
-        this.location.back();
-    }
-
 }

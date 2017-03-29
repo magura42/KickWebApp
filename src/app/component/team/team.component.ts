@@ -5,6 +5,7 @@ import {Team} from "../../model/team";
 import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
 import {Person} from "../../model/person";
+import {CommonComponent} from "../common.component";
 
 @Component({
     selector: 'app-team',
@@ -12,18 +13,19 @@ import {Person} from "../../model/person";
     templateUrl: './team.component.html',
     styleUrls: ['./team.component.scss']
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent extends CommonComponent implements OnInit {
 
     config:Object;
 
     team:Team;
 
-    coaches: Person[];
+    coaches:Person[];
 
-    players: Person[];
+    players:Person[];
 
-    constructor(private router: Router, private location:Location, private teamService: TeamService,
-                private route: ActivatedRoute, private loginService: LoginService) {
+    constructor(private router:Router, location:Location, private teamService:TeamService,
+                private route:ActivatedRoute, loginService:LoginService) {
+        super(loginService, location);
         this.config = {
             toolbar: [
                 ['Source', '-', 'Bold', 'Italic'],
@@ -42,10 +44,6 @@ export class TeamComponent implements OnInit {
         });
     }
 
-    isAdmin(): boolean {
-        return this.loginService.isAdmin();
-    }
-
     ngOnInit() {
 
     }
@@ -54,9 +52,7 @@ export class TeamComponent implements OnInit {
         this.teamService.update(this.team);
     }
 
-    goBack():void {
-        this.location.back();
-    }
+
 
     showPersonDetails(personId) {
         console.log("personid: " + personId);
