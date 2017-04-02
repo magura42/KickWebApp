@@ -6,6 +6,7 @@ import {TabsModule} from "ng2-bootstrap/tabs";
 import {AppRoutingModule} from "./app-routing.module";
 import {ClubService} from "./service/club.service";
 import {LoginService} from "./service/login.service";
+import {EventService} from "./service/event.service";
 import {PersonService} from "./service/person.service";
 import {AppComponent} from "./app.component";
 import {PersonDetailComponent} from "./component/person-detail/person-detail.component";
@@ -42,7 +43,7 @@ import {CKEditorModule} from "ng2-ckeditor";
         TabsModule.forRoot(),
         CKEditorModule
     ],
-    providers: [ClubService, PersonService, LoginService,
+    providers: [ClubService, PersonService, LoginService, EventService,
         { provide: LOCALE_ID, useValue: "de-DE" }],
     bootstrap: [AppComponent]
 })

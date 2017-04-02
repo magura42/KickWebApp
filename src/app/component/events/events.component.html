@@ -1,3 +1,68 @@
-<p>
-  events works!
-</p>
+<div *ngIf="trainings">
+
+    <tabset #staticTabs>
+        <tab heading="Training" customClass="navTab">
+            <table class="table table-hover table-sm">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    <th>Datum</th>
+                    <th>Beginn</th>
+                    <th>Ende</th>
+                    <th>Treffen</th>
+                    <th>Teilnahme</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let training of trainings; let i = index;">
+                    <th scope="row">{{i}}</th>
+                    <td>{{training.date | date}}</td>
+                    <td>{{training.begintime}}</td>
+                    <td>{{training.endtime}}</td>
+                    <td>{{training.gettogethertime}}</td>
+                    <td>
+                        <span class="badges">
+                            <span class="badge badge-pill badge-success">{{training.participationYes}}</span>
+                            <span class="badge badge-pill badge-warning">{{training.participationMaybe}}</span>
+                            <span class="badge badge-pill badge-danger pull-right">{{training.participationNo}}</span>
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </tab>
+        <tab heading="Spiel" customClass="navTab">
+
+        </tab>
+        <tab heading="Turnier" customClass="navTab">
+            <table class="table table-hover table-sm">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    <th>Datum</th>
+                    <th>Beginn</th>
+                    <th>Ende</th>
+                    <th>Treffen</th>
+                    <th>Teilnahme</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let tournament of tournaments; let i = index;">
+                    <th scope="row">{{i}}</th>
+                    <td>{{tournament.date | date}}</td>
+                    <td>{{tournament.begintime}}</td>
+                    <td>{{tournament.endtime}}</td>
+                    <td>{{tournament.gettogethertime}}</td>
+                    <td>
+                        <span class="badges">
+                            <span class="badge badge-pill badge-success">{{tournament.participationYes}}</span>
+                            <span class="badge badge-pill badge-warning">{{tournament.participationMaybe}}</span>
+                            <span class="badge badge-pill badge-danger pull-right">{{tournament.participationNo}}</span>
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </tab>
+    </tabset>
+</div>

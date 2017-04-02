@@ -6,11 +6,15 @@ export class Event {
     street: string;
     zipcode: string;
     city: string;
-    date: string;
-    begintime: string;
-    endtime: string;
+    date: Date;
+    begintime: Date;
+    endtime: Date;
     gettogethertime: string;
-    participationYes: number;
-    participationNo: number;
-    participationMaybe: number;
+    participationYes: number[];
+    participationNo: number[];
+    participationMaybe: number[];
+    email: string;
+    contact: string;
+    telefon: string;
+    web: string;
 }

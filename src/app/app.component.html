@@ -20,7 +20,7 @@
                     <a class="nav-link" [routerLink]="['/dashboard', sessionData.clubid]" routerLinkActive="active">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/events" routerLinkActive="active">Termine</a>
+                    <a class="nav-link" [routerLink]="['events', sessionData.teamid]" routerLinkActive="active">Termine</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/team', sessionData.teamid]" routerLinkActive="active">Mannschaft</a>

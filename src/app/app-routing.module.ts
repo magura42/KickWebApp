@@ -11,7 +11,7 @@ import {EventsComponent} from "./component/events/events.component";
 const routes: Routes = [
     { path: 'dashboard/:id', component: DashboardComponent },
     { path: 'team/:id', component: TeamComponent },
-    { path: 'events', component: EventsComponent },
+    { path: 'events/:teamId', component: EventsComponent },
     { path: 'persondetail/:id', component: PersonDetailComponent },
     { path: 'clubinfo', component: ClubInfoComponent },
     { path: 'clubdetail/:id', component: ClubDetailComponent },
