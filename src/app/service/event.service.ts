@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { Club } from '../model/club';
+import { Event } from '../model/event';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 

@@ -4,19 +4,22 @@ import {Location} from "@angular/common";
 import {LoginService} from "../../service/login.service";
 import {EventService} from "../../service/event.service";
 import {ActivatedRoute} from "@angular/router";
+import {Event} from "../../model/event";
+import {DataTablesComponent} from "../dataTables.component";
 
 @Component({
     selector: 'app-events',
     templateUrl: './events.component.html',
-    styleUrls: ['./events.component.css']
+    styleUrls: ['./events.component.scss']
 })
-export class EventsComponent extends CommonComponent implements OnInit {
+export class EventsComponent extends DataTablesComponent implements OnInit {
 
     games:Event[];
 
     trainings:Event[];
 
     tournaments:Event[];
+
 
     constructor(loginService:LoginService, location:Location, route:ActivatedRoute,
                 private eventService:EventService) {

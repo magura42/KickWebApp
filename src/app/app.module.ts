@@ -20,6 +20,7 @@ import {EventCardComponent} from "./event-card/event-card.component";
 import {NotFoundComponent} from "./component/not-found/not-found.component";
 import {EventsComponent} from "./component/events/events.component";
 import {CKEditorModule} from "ng2-ckeditor";
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import {CKEditorModule} from "ng2-ckeditor";
         HttpModule,
         AppRoutingModule,
         TabsModule.forRoot(),
-        CKEditorModule
+        CKEditorModule,
+        DataTablesModule
     ],
     providers: [ClubService, PersonService, LoginService, EventService,
         { provide: LOCALE_ID, useValue: "de-DE" }],

@@ -2,34 +2,35 @@
 
     <tabset #staticTabs>
         <tab heading="Training" customClass="navTab">
-            <table class="table table-hover table-sm">
-                <thead class="thead-inverse">
-                <tr>
-                    <th>#</th>
-                    <th>Datum</th>
-                    <th>Beginn</th>
-                    <th>Ende</th>
-                    <th>Treffen</th>
-                    <th>Teilnahme</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let training of trainings; let i = index;">
-                    <th scope="row">{{i}}</th>
-                    <td>{{training.date | date}}</td>
-                    <td>{{training.begintime}}</td>
-                    <td>{{training.endtime}}</td>
-                    <td>{{training.gettogethertime}}</td>
-                    <td>
+            <div class="dataTable">
+                <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover" cellspacing="0"
+                       width="100%">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>Datum</th>
+                        <th>Beginn</th>
+                        <th>Ende</th>
+                        <th>Treffen</th>
+                        <th>Teilnahme</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let training of trainings; let i = index;">
+                        <td>{{training.date}}</td>
+                        <td>{{training.begintime}}</td>
+                        <td>{{training.endtime}}</td>
+                        <td>{{training.gettogethertime}}</td>
+                        <td>
                         <span class="badges">
-                            <span class="badge badge-pill badge-success">{{training.participationYes}}</span>
-                            <span class="badge badge-pill badge-warning">{{training.participationMaybe}}</span>
-                            <span class="badge badge-pill badge-danger pull-right">{{training.participationNo}}</span>
+                            <span class="badge badge-pill badge-success">{{training.participationYes.length}}</span>
+                            <span class="badge badge-pill badge-warning">{{training.participationMaybe.length}}</span>
+                            <span class="badge badge-pill badge-danger pull-right">{{training.participationNo.length}}</span>
                         </span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </tab>
         <tab heading="Spiel" customClass="navTab">
 
@@ -55,9 +56,9 @@
                     <td>{{tournament.gettogethertime}}</td>
                     <td>
                         <span class="badges">
-                            <span class="badge badge-pill badge-success">{{tournament.participationYes}}</span>
-                            <span class="badge badge-pill badge-warning">{{tournament.participationMaybe}}</span>
-                            <span class="badge badge-pill badge-danger pull-right">{{tournament.participationNo}}</span>
+                            <span class="badge badge-pill badge-success">{{tournament.participationYes.length}}</span>
+                            <span class="badge badge-pill badge-warning">{{tournament.participationMaybe.length}}</span>
+                            <span class="badge badge-pill badge-danger pull-right">{{tournament.participationNo.length}}</span>
                         </span>
                     </td>
                 </tr>
