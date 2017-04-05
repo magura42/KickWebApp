@@ -16,7 +16,7 @@ import {ClubDetailComponent} from "./component/club-detail/club-detail.component
 import {TeamComponent} from "./component/team/team.component";
 import {FooterComponent} from "./footer/footer.component";
 import {EventsOverviewComponent} from "./events-overview/events-overview.component";
-import {EventCardComponent} from "./event-card/event-card.component";
+import {EventCardComponent} from "./component/event-card/event-card.component";
 import {NotFoundComponent} from "./component/not-found/not-found.component";
 import {EventsComponent} from "./component/events/events.component";
 import {CKEditorModule} from "ng2-ckeditor";

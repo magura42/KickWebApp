@@ -1,5 +1,13 @@
 @import 'variables';
 
+/** Common styles for the tab panels. */
+.nav-item.navTab a {
+  color: #999999;
+}
+.nav-item.navTab a:hover {
+  color: #535353;
+}
+
 .container {
   border-left: 1px solid $dark-grey-color;
   border-right: 1px solid $dark-grey-color;
