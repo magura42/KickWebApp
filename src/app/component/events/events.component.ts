@@ -1,11 +1,11 @@
 import {Component, OnInit} from "@angular/core";
-import {CommonComponent} from "../common.component";
 import {Location} from "@angular/common";
 import {LoginService} from "../../service/login.service";
 import {EventService} from "../../service/event.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Event} from "../../model/event";
 import {DataTablesComponent} from "../dataTables.component";
+import {DataService} from "../../service/data.service";
 
 @Component({
     selector: 'app-events',
@@ -21,8 +21,8 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
     tournaments:Event[];
 
 
-    constructor(loginService:LoginService, location:Location, route:ActivatedRoute,
-                private eventService:EventService) {
+    constructor(private router:Router, loginService:LoginService, location:Location, route:ActivatedRoute,
+                private eventService:EventService, private dataService: DataService) {
 
         super(loginService, location);
 
@@ -40,6 +40,11 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
 
     ngOnInit() {
 
+    }
+
+    showEventDetails(event) {
+        this.dataService.currentEvent = event
+        this.router.navigate(['/eventdetail']);
     }
 
 }

@@ -7,8 +7,8 @@ export class Event {
     zipcode: string;
     city: string;
     date: Date;
-    begintime: Date;
-    endtime: Date;
+    begintime: string;
+    endtime: string;
     gettogethertime: string;
     participationYes: number[];
     participationNo: number[];

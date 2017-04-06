@@ -21,6 +21,15 @@ export class EventService {
         .catch(this.handleError);
   }
 
+  update(event: Event): Promise<Event> {
+    const url = `${environment.backendUrl}person/${event.eventId}`;
+    return this.http
+        .put(url, JSON.stringify(event), {headers: this.headers})
+        .toPromise()
+        .then(() => event)
+        .catch(this.handleError);
+  }
+
   getTrainings(teamid: number): Promise<Event[]> {
     this.headers.append('Access-Control-Allow-Origin', '*');
     const url = `${environment.backendUrl}team/${teamid}/trainings`;

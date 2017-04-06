@@ -7,12 +7,14 @@ import { ClubInfoComponent }  from './club-info/club-info.component';
 import { TeamComponent }  from './component/team/team.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import {EventsComponent} from "./component/events/events.component";
+import {EventDetailComponent} from "./component/event-detail/event-detail.component";
 
 const routes: Routes = [
     { path: 'dashboard/:id', component: DashboardComponent },
     { path: 'team/:id', component: TeamComponent },
     { path: 'events/:teamId', component: EventsComponent },
     { path: 'persondetail/:id', component: PersonDetailComponent },
+    { path: 'eventdetail', component: EventDetailComponent },
     { path: 'clubinfo', component: ClubInfoComponent },
     { path: 'clubdetail/:id', component: ClubDetailComponent },
     { path: '404', component: NotFoundComponent },

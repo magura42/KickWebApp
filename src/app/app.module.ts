@@ -4,10 +4,13 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {TabsModule} from "ng2-bootstrap/tabs";
 import {AppRoutingModule} from "./app-routing.module";
+
 import {ClubService} from "./service/club.service";
 import {LoginService} from "./service/login.service";
 import {EventService} from "./service/event.service";
 import {PersonService} from "./service/person.service";
+import {DataService} from "./service/data.service";
+
 import {AppComponent} from "./app.component";
 import {PersonDetailComponent} from "./component/person-detail/person-detail.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
@@ -19,13 +22,15 @@ import {EventsOverviewComponent} from "./events-overview/events-overview.compone
 import {EventCardComponent} from "./component/event-card/event-card.component";
 import {NotFoundComponent} from "./component/not-found/not-found.component";
 import {EventsComponent} from "./component/events/events.component";
+import {EventDetailComponent} from "./component/event-detail/event-detail.component";
 import {CKEditorModule} from "ng2-ckeditor";
-import { DataTablesModule } from 'angular-datatables';
+import {DataTablesModule} from "angular-datatables";
 
 @NgModule({
     declarations: [
         AppComponent,
         PersonDetailComponent,
+        EventDetailComponent,
         DashboardComponent,
         ClubInfoComponent,
         ClubDetailComponent,
@@ -45,8 +50,8 @@ import { DataTablesModule } from 'angular-datatables';
         CKEditorModule,
         DataTablesModule
     ],
-    providers: [ClubService, PersonService, LoginService, EventService,
-        { provide: LOCALE_ID, useValue: "de-DE" }],
+    providers: [ClubService, PersonService, LoginService, EventService, DataService,
+        {provide: LOCALE_ID, useValue: "de-DE"}],
     bootstrap: [AppComponent]
 })
 export class AppModule {
