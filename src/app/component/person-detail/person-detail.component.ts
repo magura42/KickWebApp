@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ElementRef} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {PersonService} from "../../service/person.service";
 import {Person} from "../../model/person";
@@ -7,31 +7,45 @@ import {Location} from "@angular/common";
 import {CommonComponent} from "../common.component";
 
 @Component({
-  selector: 'app-person-detail',
-  templateUrl: './person-detail.component.html',
-  styleUrls: ['./person-detail.component.scss']
+    selector: 'app-person-detail',
+    templateUrl: './person-detail.component.html',
+    styleUrls: ['./person-detail.component.scss']
 })
-export class PersonDetailComponent extends CommonComponent  implements OnInit {
+export class PersonDetailComponent extends CommonComponent implements OnInit {
 
-  person: Person;
+    person:Person;
 
-  constructor(loginService: LoginService, route: ActivatedRoute, private personService: PersonService,
-              location:Location) {
-    super(loginService, location);
-    let personid = route.snapshot.params['id'];
-    this.personService.getPerson(personid).then(person => {
-      console.log("person: " + person);
-      this.person = person;
-    });
-  }
+    constructor(private element:ElementRef, loginService:LoginService, route:ActivatedRoute,
+                private personService:PersonService, location:Location) {
+        super(loginService, location);
+        let personid = route.snapshot.params['id'];
+        this.personService.getPerson(personid).then(person => {
+            console.log("person: " + person);
+            this.person = person;
+        });
+    }
 
+    changeListner(event) {
+        if (event.target.files && event.target.files[0]) {
+            var reader:FileReader = new FileReader();
+            var image = this.element.nativeElement.querySelector('.personDetail--foto');
 
-  ngOnInit() {
+            reader.onload = function (event:any) {
+                var src = event.target.result;
+                image.src = src;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    }
 
-  }
+    ngOnInit() {
 
-  save():void {
-    this.personService.update(this.person)
-        .then(() => this.goBack());
-  }
+    }
+
+    save():void {
+        var image = this.element.nativeElement.querySelector('.personDetail--foto');
+        this.person.foto = image.src;
+        this.personService.update(this.person)
+            .then(() => this.goBack());
+    }
 }
