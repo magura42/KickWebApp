@@ -5,12 +5,23 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Foto</label>
                 <div class="col-sm-8">
-                    <img class="personDetail--foto img-thumbnail rounded" [src]="person.foto"
-                         onError="this.src='src/assets/images/placeholder.png';"/>
 
-                    <span class="btn btn-sm btn-file">
-                            <input *ngIf="isAdmin()" type="file" accept="image/jpeg" (change)="changeListner($event)"/>
-                        </span>
+                    <div class="col-12 form-control-static">
+
+                        <div [hidden]="fotoError ===''"
+                             class="personDetail--errorMsgFoto alert alert-danger fade show"
+                             role="alert">
+                            {{fotoError}}
+                        </div>
+
+                        <img class="personDetail--foto img-thumbnail rounded" [src]="person.foto"
+                             onError="this.src='src/assets/placeholder.png';"/>
+
+                        <label for="fotoFile" class="personDetail--selectFotoLabel btn btn-sm btn-outline-primary">Foto wählen</label>
+                        <input class="personDetail--selectFoto" id="fotoFile" *ngIf="isAdmin()" type="file"
+                               accept="image/jpeg, image/png"
+                               (change)="changeListner($event)"/>
+                    </div>
 
                 </div>
             </div>

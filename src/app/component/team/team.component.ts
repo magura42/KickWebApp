@@ -5,7 +5,7 @@ import {Team} from "../../model/team";
 import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
 import {Person} from "../../model/person";
-import {CommonComponent} from "../common.component";
+import {DataTablesComponent} from "../dataTables.component";
 
 @Component({
     selector: 'app-team',
@@ -13,7 +13,7 @@ import {CommonComponent} from "../common.component";
     templateUrl: './team.component.html',
     styleUrls: ['./team.component.scss']
 })
-export class TeamComponent extends CommonComponent implements OnInit {
+export class TeamComponent extends DataTablesComponent implements OnInit {
 
     config:Object;
 
@@ -42,6 +42,7 @@ export class TeamComponent extends CommonComponent implements OnInit {
         this.teamService.getPlayers(id).then(players => {
             this.players = players;
         });
+        this.dtOptions.order = [[0, "asc"]];
     }
 
     ngOnInit() {
@@ -51,7 +52,6 @@ export class TeamComponent extends CommonComponent implements OnInit {
     save():void {
         this.teamService.update(this.team);
     }
-
 
 
     showPersonDetails(personId) {

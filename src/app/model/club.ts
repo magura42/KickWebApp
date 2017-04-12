@@ -8,4 +8,5 @@ export class Club {
     email: string;
     telefon: string;
     web: string;
+    logo: string;
 }

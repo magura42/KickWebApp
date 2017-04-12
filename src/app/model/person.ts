@@ -12,4 +12,5 @@ export class Person {
     email:string;
     login:string;
     password:string;
+    passnumber:number;
 }
