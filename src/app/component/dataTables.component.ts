@@ -2,10 +2,11 @@
 import {LoginService} from "../service/login.service";
 import {Location} from "@angular/common";
 import {CommonComponent} from "./common.component";
+import Settings = DataTables.Settings;
 
 export class DataTablesComponent extends CommonComponent {
 
-    dtOptions: DataTables.Settings = {};
+    dtOptions: Settings = {};
 
     constructor(loginService: LoginService, location: Location) {
         super(loginService, location)
