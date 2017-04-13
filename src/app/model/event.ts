@@ -2,7 +2,7 @@ import { EventType } from '../enum/EventType';
 
 export class Event {
     eventId: number;
-    eventType: EventType;
+    eventType: string;
     street: string;
     zipcode: string;
     city: string;

@@ -4,7 +4,10 @@ import {Location} from "@angular/common";
 
 export class CommonComponent {
 
-    constructor(private loginService: LoginService, private location: Location) {
+    loginService: LoginService;
+
+    constructor(loginService: LoginService, private location: Location) {
+        this.loginService = loginService;
     }
 
     isAdmin(): boolean {

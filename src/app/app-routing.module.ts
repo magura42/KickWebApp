@@ -10,7 +10,7 @@ import {EventsComponent} from "./component/events/events.component";
 import {EventDetailComponent} from "./component/event-detail/event-detail.component";
 
 const routes:Routes = [
-    {path: 'dashboard/:id', component: DashboardComponent},
+    {path: 'dashboard/:teamId', component: DashboardComponent},
     {path: 'team/:id', component: TeamComponent},
     {path: 'events/:teamId', component: EventsComponent},
     {path: 'persondetail/:id', component: PersonDetailComponent},
