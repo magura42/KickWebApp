@@ -13,16 +13,17 @@ import {DataService} from "./service/data.service";
 
 import {AppComponent} from "./app.component";
 import {PersonDetailComponent} from "./component/person-detail/person-detail.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
+import {DashboardComponent} from "./component/dashboard/dashboard.component";
 import {ClubInfoComponent} from "./club-info/club-info.component";
 import {ClubDetailComponent} from "./component/club-detail/club-detail.component";
 import {TeamComponent} from "./component/team/team.component";
 import {FooterComponent} from "./footer/footer.component";
-import {EventsOverviewComponent} from "./events-overview/events-overview.component";
+import {EventsOverviewComponent} from "./component/events-overview/events-overview.component";
 import {EventCardComponent} from "./component/event-card/event-card.component";
 import {NotFoundComponent} from "./component/not-found/not-found.component";
 import {EventsComponent} from "./component/events/events.component";
 import {EventDetailComponent} from "./component/event-detail/event-detail.component";
+
 import {CKEditorModule} from "ng2-ckeditor";
 import {DataTablesModule} from "angular-datatables";
 

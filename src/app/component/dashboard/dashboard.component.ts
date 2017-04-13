@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ClubService} from "../service/club.service";
-import {Club} from "../model/club";
-import {LoginService} from "../service/login.service";
+import {ClubService} from "../../service/club.service";
+import {LoginService} from "../../service/login.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
