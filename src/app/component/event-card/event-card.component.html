@@ -1,8 +1,9 @@
 <div *ngIf="event" class="card event">
-    <img (click)="showEventDetails()" class="card-img-top" src="../../assets/training.jpg" alt="Card image cap">
+    <img (click)="showEventDetails()" class="card-img-top" src="../../assets/{{getEventName(event.eventType)}}_250.jpg"
+         alt="Card image cap">
     <div class="card-block">
 
-        <h4 class="card-title">Training</h4>
+        <h4 class="card-title">{{getEventName(event.eventType)}}</h4>
         <span class="badges">
         <span class="badge badge-pill badge-success">{{event.participationYes.length}}</span>
         <span class="badge badge-pill badge-warning">{{event.participationMaybe.length}}</span>
@@ -11,7 +12,7 @@
         <div class="row">
 
             <div class="card-text col-6">Datum:</div>
-            <div class="card-text col-6">{{event.date | date}}</div>
+            <div class="card-text col-6">{{event.date | date:'shortDate'}}</div>
 
             <div class="card-text col-6">Treffen:</div>
             <div class="card-text col-6">{{event.gettogethertime}}</div>

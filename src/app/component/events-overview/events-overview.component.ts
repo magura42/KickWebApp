@@ -31,5 +31,4 @@ export class EventsOverviewComponent extends CommonComponent implements OnInit {
     }
 
 
-
 }

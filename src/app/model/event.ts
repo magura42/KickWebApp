@@ -1,5 +1,3 @@
-import { EventType } from '../enum/EventType';
-
 export class Event {
     eventId: number;
     eventType: string;
@@ -17,4 +15,5 @@ export class Event {
     contact: string;
     telefon: string;
     web: string;
+    teamId: number;
 }

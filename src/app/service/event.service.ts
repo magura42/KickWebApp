@@ -23,7 +23,7 @@ export class EventService {
     }
 
     update(event:Event):Promise<Event> {
-        const url = `${environment.backendUrl}person/${event.eventId}`;
+        const url = `${environment.backendUrl}event/${event.eventId}`;
         return this.http
             .put(url, JSON.stringify(event), {headers: this.headers})
             .toPromise()
@@ -43,7 +43,7 @@ export class EventService {
 
     getTeamEvents(teamid:number):Promise<Event[]> {
         this.headers.append('Access-Control-Allow-Origin', '*');
-        const url = `${environment.backendUrl}team/${teamid}/trainings`;
+        const url = `${environment.backendUrl}team/${teamid}/events`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
             .then(response =>
