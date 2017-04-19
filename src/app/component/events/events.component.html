@@ -1,4 +1,4 @@
-<div *ngIf="trainings">
+<div class="events" *ngIf="trainings">
 
     <tabset #staticTabs>
         <tab heading="Training" customClass="navTab">
@@ -26,6 +26,21 @@
                             <span class="badge badge-pill badge-warning">{{training.participationMaybe.length}}</span>
                             <span class="badge badge-pill badge-danger pull-right">{{training.participationNo.length}}</span>
                         </span>
+                            <button class="btn btn-sm btn-outline-success">
+                            <svg class="octicon" aria-hidden="true">
+                                <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                            </svg>
+                            </button>
+                            <button class="btn btn-sm btn-outline-warning">
+                            <svg class="octicon" aria-hidden="true">
+                                <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                            </svg>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                                </svg>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -48,7 +63,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let tournament of tournaments; let i = index;" (dblclick)="showEventDetails(tournament);">
+                    <tr *ngFor="let tournament of tournaments; let i = index;"
+                        (dblclick)="showEventDetails(tournament);">
                         <td>{{tournament.date}}</td>
                         <td>{{tournament.begintime}}</td>
                         <td>{{tournament.endtime}}</td>
