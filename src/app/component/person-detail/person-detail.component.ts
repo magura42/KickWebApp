@@ -28,6 +28,10 @@ export class PersonDetailComponent extends CommonComponent implements OnInit {
         });
     }
 
+    isPersonDetailsAdmin() {
+        return this.isAdmin() || this.person.personid == this.loginService.getSessionData().personid;
+    }
+
     changeListner(event) {
         if (event.target.files && event.target.files[0]) {
             var reader:FileReader = new FileReader();
