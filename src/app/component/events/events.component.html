@@ -26,17 +26,23 @@
                             <span class="badge badge-pill badge-warning">{{training.participationMaybe.length}}</span>
                             <span class="badge badge-pill badge-danger pull-right">{{training.participationNo.length}}</span>
                         </span>
-                            <button class="btn btn-sm btn-outline-success">
-                            <svg class="octicon" aria-hidden="true">
-                                <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
-                            </svg>
+                            <button [hidden]="!showButton('training', training.eventId, 'yes')"
+                                    (click)="changeParticipationState('training', training.eventId, 'yes')"
+                                    class="btn btn-sm btn-outline-success">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                                </svg>
                             </button>
-                            <button class="btn btn-sm btn-outline-warning">
-                            <svg class="octicon" aria-hidden="true">
-                                <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
-                            </svg>
+                            <button [hidden]="!showButton('training', training.eventId, 'maybe')"
+                                    (click)="changeParticipationState('training', training.eventId, 'maybe')"
+                                    class="btn btn-sm btn-outline-warning">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                                </svg>
                             </button>
-                            <button class="btn btn-sm btn-outline-danger">
+                            <button [hidden]="!showButton('training', training.eventId, 'no')"
+                                    (click)="changeParticipationState('training', training.eventId, 'no')"
+                                    class="btn btn-sm btn-outline-danger">
                                 <svg class="octicon" aria-hidden="true">
                                     <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
                                 </svg>
