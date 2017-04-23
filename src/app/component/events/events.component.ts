@@ -20,6 +20,7 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
 
     tournaments:Event[];
 
+    teamevents: Event[];
 
     constructor(private router:Router, loginService:LoginService, location:Location, route:ActivatedRoute,
                 private eventService:EventService, private dataService:DataService) {
@@ -35,6 +36,9 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
         });
         this.eventService.getTrainings(teamid).then(trainings => {
             this.trainings = trainings;
+        });
+        this.eventService.getTeamevents(teamid).then(teamevents => {
+            this.teamevents = teamevents;
         });
     }
 
@@ -75,6 +79,8 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
             return this.games.filter(t => t.eventId === eventId)[0];
         } else if (type === 'tournament') {
             return this.tournaments.filter(t => t.eventId === eventId)[0];
+        } else if (type === 'teamevent') {
+            return this.teamevents.filter(t => t.eventId === eventId)[0];
         }
     }
 

@@ -89,6 +89,8 @@ export class EventCardComponent extends CommonComponent implements OnInit {
             return 'Training';
         } else if (eventType === 'tournament') {
             return 'Turnier';
+        } else if (eventType === 'teamevent') {
+            return 'Teamevent';
         }
         return 'Spiel';
     }

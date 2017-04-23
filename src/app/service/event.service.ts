@@ -41,7 +41,7 @@ export class EventService {
             .catch(this.handleError);
     }
 
-    getTeamEvents(teamid:number):Promise<Event[]> {
+    getEvents(teamid:number):Promise<Event[]> {
         this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}team/${teamid}/events`;
         return this.http.get(url, {headers: this.headers})
@@ -54,6 +54,16 @@ export class EventService {
     getTournaments(teamid:number):Promise<Event[]> {
         this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}team/${teamid}/tournaments`;
+        return this.http.get(url, {headers: this.headers})
+            .toPromise()
+            .then(response =>
+                response.json() as Event[])
+            .catch(this.handleError);
+    }
+
+    getTeamevents(teamid:number):Promise<Event[]> {
+        this.headers.append('Access-Control-Allow-Origin', '*');
+        const url = `${environment.backendUrl}team/${teamid}/teamevents`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
             .then(response =>

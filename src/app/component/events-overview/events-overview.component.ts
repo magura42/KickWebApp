@@ -24,11 +24,8 @@ export class EventsOverviewComponent extends CommonComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("constructor EventsOverviewComponent..." + this.teamId);
-        this.eventService.getTeamEvents(this.teamId).then(events => {
+        this.eventService.getEvents(this.teamId).then(events => {
             this.events = events;
         });
     }
-
-
 }

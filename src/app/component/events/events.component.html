@@ -81,6 +81,79 @@
                             <span class="badge badge-pill badge-warning">{{tournament.participationMaybe.length}}</span>
                             <span class="badge badge-pill badge-danger pull-right">{{tournament.participationNo.length}}</span>
                         </span>
+                            <button [hidden]="!showButton('tournament', tournament.eventId, 'yes')"
+                                    (click)="changeParticipationState('tournament', tournament.eventId, 'yes')"
+                                    class="btn btn-sm btn-outline-success">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                                </svg>
+                            </button>
+                            <button [hidden]="!showButton('tournament', tournament.eventId, 'maybe')"
+                                    (click)="changeParticipationState('tournament', tournament.eventId, 'maybe')"
+                                    class="btn btn-sm btn-outline-warning">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                                </svg>
+                            </button>
+                            <button [hidden]="!showButton('tournament', tournament.eventId, 'no')"
+                                    (click)="changeParticipationState('tournament', tournament.eventId, 'no')"
+                                    class="btn btn-sm btn-outline-danger">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </tab>
+        <tab heading="Event" customClass="navTab">
+            <div class="dataTable">
+                <table dataTable class="table table-striped table-hover" cellspacing="0" width="100%">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>Datum</th>
+                        <th>Name</th>
+                        <th>Beginn</th>
+                        <th>Ende</th>
+                        <th>Teilnahme</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let teamevent of teamevents; let i = index;"
+                        (dblclick)="showEventDetails(teamevent);">
+                        <td>{{teamevent.date}}</td>
+                        <td>{{teamevent.name}}</td>
+                        <td>{{teamevent.begintime}}</td>
+                        <td>{{teamevent.endtime}}</td>
+                        <td>
+                        <span class="badges">
+                            <span class="badge badge-pill badge-success">{{teamevent.participationYes.length}}</span>
+                            <span class="badge badge-pill badge-warning">{{teamevent.participationMaybe.length}}</span>
+                            <span class="badge badge-pill badge-danger pull-right">{{teamevent.participationNo.length}}</span>
+                        </span>
+                            <button [hidden]="!showButton('teamevent', teamevent.eventId, 'yes')"
+                                    (click)="changeParticipationState('teamevent', teamevent.eventId, 'yes')"
+                                    class="btn btn-sm btn-outline-success">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                                </svg>
+                            </button>
+                            <button [hidden]="!showButton('teamevent', teamevent.eventId, 'maybe')"
+                                    (click)="changeParticipationState('teamevent', teamevent.eventId, 'maybe')"
+                                    class="btn btn-sm btn-outline-warning">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                                </svg>
+                            </button>
+                            <button [hidden]="!showButton('teamevent', teamevent.eventId, 'no')"
+                                    (click)="changeParticipationState('teamevent', teamevent.eventId, 'no')"
+                                    class="btn btn-sm btn-outline-danger">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                                </svg>
+                            </button>
                         </td>
                     </tr>
                     </tbody>
