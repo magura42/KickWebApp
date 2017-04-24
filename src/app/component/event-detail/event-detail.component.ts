@@ -33,10 +33,12 @@ export class EventDetailComponent extends CommonComponent  implements OnInit {
 
   getEventImage(eventType) {
     switch(eventType) {
-      case 'game':
+      case 'match':
         return "../../assets/Spiel_500.jpg";
       case 'tournament':
         return "../../assets/Turnier_500.jpg";
+      case 'teamevent':
+        return "../../assets/Teamevent_500.jpg";
       default: // training
         return "../../assets/Training_500.jpg";
     }
