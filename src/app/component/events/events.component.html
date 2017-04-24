@@ -54,11 +54,62 @@
             </div>
         </tab>
         <tab heading="Spiel" customClass="navTab">
-
+            <div class="dataTable">
+                <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover" cellspacing="0"
+                       width="100%">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>Datum</th>
+                        <th>Beginn</th>
+                        <th>Ende</th>
+                        <th>Treffen</th>
+                        <th>Teilnahme</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let match of matches; let i = index;"
+                        (dblclick)="showEventDetails(match);">
+                        <td>{{match.date}}</td>
+                        <td>{{match.begintime}}</td>
+                        <td>{{match.endtime}}</td>
+                        <td>{{match.gettogethertime}}</td>
+                        <td>
+                        <span class="badges">
+                            <span class="badge badge-pill badge-success">{{match.participationYes.length}}</span>
+                            <span class="badge badge-pill badge-warning">{{match.participationMaybe.length}}</span>
+                            <span class="badge badge-pill badge-danger pull-right">{{match.participationNo.length}}</span>
+                        </span>
+                            <button [hidden]="!showButton('match', match.eventId, 'yes')"
+                                    (click)="changeParticipationState('match', match.eventId, 'yes')"
+                                    class="btn btn-sm btn-outline-success">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                                </svg>
+                            </button>
+                            <button [hidden]="!showButton('match', match.eventId, 'maybe')"
+                                    (click)="changeParticipationState('match', match.eventId, 'maybe')"
+                                    class="btn btn-sm btn-outline-warning">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                                </svg>
+                            </button>
+                            <button [hidden]="!showButton('match', match.eventId, 'no')"
+                                    (click)="changeParticipationState('match', match.eventId, 'no')"
+                                    class="btn btn-sm btn-outline-danger">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </tab>
         <tab heading="Turnier" customClass="navTab">
             <div class="dataTable">
-                <table dataTable class="table table-striped table-hover" cellspacing="0" width="100%">
+                <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover" cellspacing="0"
+                       width="100%">
                     <thead class="thead-inverse">
                     <tr>
                         <th>Datum</th>
@@ -110,7 +161,8 @@
         </tab>
         <tab heading="Event" customClass="navTab">
             <div class="dataTable">
-                <table dataTable class="table table-striped table-hover" cellspacing="0" width="100%">
+                <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover" cellspacing="0"
+                       width="100%">
                     <thead class="thead-inverse">
                     <tr>
                         <th>Datum</th>

@@ -71,9 +71,9 @@ export class EventService {
             .catch(this.handleError);
     }
 
-    getGames(teamid:number):Promise<Event[]> {
+    getMatches(teamid:number):Promise<Event[]> {
         this.headers.append('Access-Control-Allow-Origin', '*');
-        const url = `${environment.backendUrl}team/${teamid}/games`;
+        const url = `${environment.backendUrl}team/${teamid}/matches`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
             .then(response =>

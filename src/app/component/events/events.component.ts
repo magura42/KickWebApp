@@ -14,7 +14,7 @@ import {DataService} from "../../service/data.service";
 })
 export class EventsComponent extends DataTablesComponent implements OnInit {
 
-    games:Event[];
+    matches:Event[];
 
     trainings:Event[];
 
@@ -28,9 +28,9 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
         super(loginService, location);
 
         let teamid = route.snapshot.params['teamId'];
-        // this.eventService.getGames(teamid).then(games => {
-        //     this.games = games;
-        // });
+        this.eventService.getMatches(teamid).then(matches => {
+            this.matches = matches;
+        });
         this.eventService.getTournaments(teamid).then(tournaments => {
             this.tournaments = tournaments;
         });
@@ -75,8 +75,8 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
 
         if (type === 'training') {
             return this.trainings.filter(t => t.eventId === eventId)[0];
-        } else if (type === 'game') {
-            return this.games.filter(t => t.eventId === eventId)[0];
+        } else if (type === 'match') {
+            return this.matches.filter(t => t.eventId === eventId)[0];
         } else if (type === 'tournament') {
             return this.tournaments.filter(t => t.eventId === eventId)[0];
         } else if (type === 'teamevent') {
