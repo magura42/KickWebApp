@@ -15,9 +15,20 @@ export class ParticipantsComponent extends CommonComponent {
     @Input()
     event:Event;
 
+    isVisible:boolean;
+
     constructor(loginService:LoginService, location:Location, private eventService:EventService) {
 
         super(loginService, location);
+        this.isVisible = true;
+    }
+
+    showView() {
+        this.isVisible = true;
+    }
+
+    hideView() {
+        this.isVisible = false;
     }
 
     showButton(state, personid) {
