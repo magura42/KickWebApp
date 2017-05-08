@@ -1,0 +1,16 @@
+@import "../../main";
+
+.icon {
+  width: 20px;
+  height: 21px;
+
+  &-success {
+    color: $color-success;
+  }
+  &-warning {
+    color: $color-warning;
+  }
+  &-danger {
+    color: $color-danger;
+  }
+}

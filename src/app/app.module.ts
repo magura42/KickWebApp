@@ -4,13 +4,11 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {TabsModule} from "ng2-bootstrap/tabs";
 import {AppRoutingModule} from "./app-routing.module";
-
 import {ClubService} from "./service/club.service";
 import {LoginService} from "./service/login.service";
 import {EventService} from "./service/event.service";
 import {PersonService} from "./service/person.service";
 import {DataService} from "./service/data.service";
-
 import {AppComponent} from "./app.component";
 import {PersonDetailComponent} from "./component/person-detail/person-detail.component";
 import {DashboardComponent} from "./component/dashboard/dashboard.component";
@@ -23,7 +21,7 @@ import {EventCardComponent} from "./component/event-card/event-card.component";
 import {NotFoundComponent} from "./component/not-found/not-found.component";
 import {EventsComponent} from "./component/events/events.component";
 import {EventDetailComponent} from "./component/event-detail/event-detail.component";
-
+import {ParticipantsComponent} from "./component/participants/participants.component";
 import {CKEditorModule} from "ng2-ckeditor";
 import {DataTablesModule} from "angular-datatables";
 
@@ -40,7 +38,8 @@ import {DataTablesModule} from "angular-datatables";
         EventsOverviewComponent,
         EventCardComponent,
         NotFoundComponent,
-        EventsComponent
+        EventsComponent,
+        ParticipantsComponent
     ],
     imports: [
         BrowserModule,

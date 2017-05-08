@@ -3,6 +3,7 @@ import {Headers, Http} from "@angular/http";
 import {Event} from "../model/event";
 import {environment} from "../../environments/environment";
 import "rxjs/add/operator/toPromise";
+import {Participant} from "../model/participant";
 
 @Injectable()
 export class EventService {
@@ -10,6 +11,54 @@ export class EventService {
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http:Http) {
+    }
+
+    showButton(state: string, event: Event, personid: number) {
+        if (state === 'yes') {
+            return event.participationYes.findIndex(p => p.participantId === personid) === -1;
+        } else if (state === 'maybe') {
+            return event.participationMaybe.findIndex(p => p.participantId === personid) === -1;
+        } else if (state === 'no') {
+            return event.participationNo.findIndex(p => p.participantId === personid) === -1;
+        }
+        return false;
+    }
+
+    changeParticipationState(state: string, personid: number, event: Event) {
+
+        var name:string;
+
+        // remove old participation status:
+        var indexParYes = event.participationYes.findIndex(p => p.participantId === personid);
+        if (indexParYes > -1) {
+            name = event.participationYes[indexParYes].name;
+            event.participationYes.splice(indexParYes, 1);
+        }
+
+        var indexParMaybe = event.participationMaybe.findIndex(p => p.participantId === personid);
+        if (indexParMaybe > -1) {
+            name = event.participationMaybe[indexParMaybe].name;
+            event.participationMaybe.splice(indexParMaybe, 1);
+        }
+
+        var indexParNo = event.participationNo.findIndex(p => p.participantId === personid);
+        if (indexParNo > -1) {
+            name = event.participationNo[indexParNo].name;
+            event.participationNo.splice(indexParNo, 1);
+        }
+
+        // add new participation status:
+        var participant: Participant = new Participant(personid, name);
+        if (state === 'yes') {
+            event.participationYes.push(participant);
+        } else if (state === 'maybe') {
+            event.participationMaybe.push(participant);
+        } else if (state === 'no') {
+            event.participationNo.push(participant);
+        }
+
+        this.update(event);
+
     }
 
     getEvent(eventid:number, eventType:string):Promise<Event> {
