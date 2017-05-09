@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, SimpleChanges, OnChanges} from "@angular/core";
 import {Location} from "@angular/common";
 import {LoginService} from "../../service/login.service";
 import {EventService} from "../../service/event.service";
@@ -10,20 +10,34 @@ import {CommonComponent} from "../common.component";
     templateUrl: './participants.component.html',
     styleUrls: ['./participants.component.scss']
 })
-export class ParticipantsComponent extends CommonComponent {
+export class ParticipantsComponent extends CommonComponent implements OnChanges {
 
     @Input()
     event:Event;
+
+    @Input()
+    selectedEvent:Event;
 
     isVisible:boolean;
 
     constructor(loginService:LoginService, location:Location, private eventService:EventService) {
 
         super(loginService, location);
-        this.isVisible = true;
+        this.isVisible = false;
+    }
+
+    ngOnChanges(changes:SimpleChanges):void {
+        if (changes['selectedEvent']) {
+            if (typeof this.selectedEvent !== 'undefined' && this.selectedEvent === this.event) {
+                this.showView();
+            } else {
+                this.hideView();
+            }
+        }
     }
 
     showView() {
+        console.log('show view for event ');
         this.isVisible = true;
     }
 

@@ -14,13 +14,15 @@ import {DataService} from "../../service/data.service";
 })
 export class EventsComponent extends DataTablesComponent implements OnInit {
 
+    selectedEvent:Event;
+
     matches:Event[];
 
     trainings:Event[];
 
     tournaments:Event[];
 
-    teamevents: Event[];
+    teamevents:Event[];
 
     constructor(private router:Router, loginService:LoginService, location:Location, route:ActivatedRoute,
                 private eventService:EventService, private dataService:DataService) {
@@ -46,9 +48,33 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
 
     }
 
+    showParticipantsViewButton(status, event) {
+        if (event === this.selectedEvent) {
+            if (status === 'show') {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if (status === 'show') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     showEventDetails(event) {
         this.dataService.currentEvent = event
         this.router.navigate(['/eventdetail']);
+    }
+
+    showParticipants4Event(event:Event) {
+        this.selectedEvent = event;
+    }
+
+    hideParticipants4Event() {
+        this.selectedEvent = null;
     }
 
     showButton(type, eventId, state) {

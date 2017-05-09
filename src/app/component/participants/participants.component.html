@@ -1,103 +1,72 @@
-<div *ngIf="isVisible" class="modal fade show in danger" id="myModal" role="dialog">
+<div *ngIf="isVisible">
+    <div *ngIf="event">
+        <div>
+            <ul class="list-group">
+                <li *ngFor="let participant of event.participationYes; let i = index;"
+                    class="list-group-item justify-content-between">
+                    {{participant.name}}
+                    <svg class="octicon icon icon-success" aria-hidden="true">
+                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                    </svg>
 
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Teilnahme</h4>
-            </div>
-            <div class="modal-body">
-                <div *ngIf="event">
-                    <div class="col-12">
-                        <div>
-                            Teilnahme: <span>{{getEventName()}}</span> am {{event.date | date:'shortDate'}},
-                            {{event.begintime}}
-                            <hr class="my-4">
-                            <p>
-                                Zusagen: <span
-                                    class="badge badge-pill badge-success">{{event.participationYes.length}}</span>
-                                Vielleicht: <span class="badge badge-pill badge-warning">{{event.participationMaybe.length}}</span>
-                                Absagen: <span class="badge badge-pill badge-danger pull-right">{{event.participationNo.length}}</span>
-                            </p>
-                        </div>
-                        <ul class="list-group">
-
-                            <li *ngFor="let participant of event.participationYes; let i = index;"
-                                class="list-group-item justify-content-between">
-                                {{participant.name}}
-                                <svg class="octicon icon icon-success" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
-                                </svg>
-
-                                <button [hidden]="!showButton('maybe', participant.participantId)"
-                                        (click)="changeParticipationState('maybe', participant.participantId)"
-                                        class="btn btn-sm btn-outline-warning">
-                                    <svg class="octicon icon" aria-hidden="true">
-                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
-                                    </svg>
-                                </button>
-                                <button [hidden]="!showButton('no', participant.participantId)"
-                                        (click)="changeParticipationState('no', participant.participantId)"
-                                        class="btn btn-sm btn-outline-danger">
-                                    <svg class="octicon icon" aria-hidden="true">
-                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
-                                    </svg>
-                                </button>
-                            </li>
-
-                            <li *ngFor="let participant of event.participationMaybe; let i = index;"
-                                class="list-group-item justify-content-between">
-                                {{participant.name}}
-                                <svg class="octicon icon icon-warning" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
-                                </svg>
-                                <button [hidden]="!showButton('yes', participant.participantId)"
-                                        (click)="changeParticipationState('yes', participant.participantId)"
-                                        class="btn btn-sm btn-outline-success">
-                                    <svg class="octicon icon" aria-hidden="true">
-                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
-                                    </svg>
-                                </button>
-                                <button [hidden]="!showButton('no', participant.participantId)"
-                                        (click)="changeParticipationState('no', participant.participantId)"
-                                        class="btn btn-sm btn-outline-danger">
-                                    <svg class="octicon icon" aria-hidden="true">
-                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
-                                    </svg>
-                                </button>
-                            </li>
-
-                            <li *ngFor="let participant of event.participationNo; let i = index;"
-                                class="list-group-item justify-content-between">
-                                {{participant.name}}
-                                <svg class="octicon icon icon-danger" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
-                                </svg>
-                                <button [hidden]="!showButton('yes', participant.participantId)"
-                                        (click)="changeParticipationState('yes', participant.participantId)"
-                                        class="btn btn-sm btn-outline-success">
-                                    <svg class="octicon icon" aria-hidden="true">
-                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
-                                    </svg>
-                                </button>
-                                <button [hidden]="!showButton('maybe', id)"
-                                        (click)="changeParticipationState('maybe', id)"
-                                        class="btn btn-sm btn-outline-warning">
-                                    <svg class="octicon icon" aria-hidden="true">
-                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
-                                    </svg>
-                                </button>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </div> <!-- modal body -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" (click)="hideView()">Close</button>
-            </div>
-        </div> <!-- modal content -->
-    </div> <!-- modal dialog -->
+                    <button [hidden]="!showButton('maybe', participant.participantId)"
+                            (click)="changeParticipationState('maybe', participant.participantId)"
+                            class="btn btn-sm btn-outline-warning">
+                        <svg class="octicon icon" aria-hidden="true">
+                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                        </svg>
+                    </button>
+                    <button [hidden]="!showButton('no', participant.participantId)"
+                            (click)="changeParticipationState('no', participant.participantId)"
+                            class="btn btn-sm btn-outline-danger">
+                        <svg class="octicon icon" aria-hidden="true">
+                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                        </svg>
+                    </button>
+                </li>
+                <li *ngFor="let participant of event.participationMaybe; let i = index;"
+                    class="list-group-item justify-content-between">
+                    {{participant.name}}
+                    <svg class="octicon icon icon-warning" aria-hidden="true">
+                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                    </svg>
+                    <button [hidden]="!showButton('yes', participant.participantId)"
+                            (click)="changeParticipationState('yes', participant.participantId)"
+                            class="btn btn-sm btn-outline-success">
+                        <svg class="octicon icon" aria-hidden="true">
+                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                        </svg>
+                    </button>
+                    <button [hidden]="!showButton('no', participant.participantId)"
+                            (click)="changeParticipationState('no', participant.participantId)"
+                            class="btn btn-sm btn-outline-danger">
+                        <svg class="octicon icon" aria-hidden="true">
+                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                        </svg>
+                    </button>
+                </li>
+                <li *ngFor="let participant of event.participationNo; let i = index;"
+                    class="list-group-item justify-content-between">
+                    {{participant.name}}
+                    <svg class="octicon icon icon-danger" aria-hidden="true">
+                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                    </svg>
+                    <button [hidden]="!showButton('yes', participant.participantId)"
+                            (click)="changeParticipationState('yes', participant.participantId)"
+                            class="btn btn-sm btn-outline-success">
+                        <svg class="octicon icon" aria-hidden="true">
+                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                        </svg>
+                    </button>
+                    <button [hidden]="!showButton('maybe', participant.participantId)"
+                            (click)="changeParticipationState('maybe', participant.participantId)"
+                            class="btn btn-sm btn-outline-warning">
+                        <svg class="octicon icon" aria-hidden="true">
+                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

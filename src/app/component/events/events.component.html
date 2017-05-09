@@ -15,52 +15,64 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let training of trainings; let i = index;" (dblclick)="showEventDetails(training);">
-                        <td>{{training.date}}</td>
-                        <td>{{training.begintime}}</td>
-                        <td>{{training.endtime}}</td>
-                        <td>{{training.gettogethertime}}</td>
-                        <td>
-                        <span class="badges">
-                            <span class="badge badge-pill badge-success">{{training.participationYes.length}}</span>
-                            <span class="badge badge-pill badge-warning">{{training.participationMaybe.length}}</span>
-                            <span class="badge badge-pill badge-danger pull-right">{{training.participationNo.length}}</span>
-                        </span>
-                            <button [hidden]="!showButton('training', training.eventId, 'yes')"
-                                    (click)="changeParticipationState('training', training.eventId, 'yes')"
-                                    class="btn btn-sm btn-outline-success">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
-                                </svg>
-                            </button>
-                            <button [hidden]="!showButton('training', training.eventId, 'maybe')"
-                                    (click)="changeParticipationState('training', training.eventId, 'maybe')"
-                                    class="btn btn-sm btn-outline-warning">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
-                                </svg>
-                            </button>
-                            <button [hidden]="!showButton('training', training.eventId, 'no')"
-                                    (click)="changeParticipationState('training', training.eventId, 'no')"
-                                    class="btn btn-sm btn-outline-danger">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
-                                </svg>
-                            </button>
+                    <ng-container *ngFor="let training of trainings; let i = index;"
+                                  (dblclick)="showEventDetails(training);">
+                        <tr>
+                            <td>{{training.date}}</td>
+                            <td>{{training.begintime}}</td>
+                            <td>{{training.endtime}}</td>
+                            <td>{{training.gettogethertime}}</td>
+                            <td>
+                                <div class="innerTD col-12">
+                                    <span class="badges">
+                                        <span class="badge badge-pill badge-success">{{training.participationYes.length}}</span>
+                                        <span class="badge badge-pill badge-warning">{{training.participationMaybe.length}}</span>
+                                        <span class="badge badge-pill badge-danger pull-right">{{training.participationNo.length}}</span>
+                                    </span>
+                                    <button [hidden]="!showButton('training', training.eventId, 'yes')"
+                                            (click)="changeParticipationState('training', training.eventId, 'yes')"
+                                            class="btn btn-sm btn-outline-success">
+                                        <svg class="octicon" aria-hidden="true">
+                                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                                        </svg>
+                                    </button>
+                                    <button [hidden]="!showButton('training', training.eventId, 'maybe')"
+                                            (click)="changeParticipationState('training', training.eventId, 'maybe')"
+                                            class="btn btn-sm btn-outline-warning">
+                                        <svg class="octicon" aria-hidden="true">
+                                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                                        </svg>
+                                    </button>
+                                    <button [hidden]="!showButton('training', training.eventId, 'no')"
+                                            (click)="changeParticipationState('training', training.eventId, 'no')"
+                                            class="btn btn-sm btn-outline-danger">
+                                        <svg class="octicon" aria-hidden="true">
+                                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                                        </svg>
+                                    </button>
 
-                            <button
-                                    (click)="changeParticipationState('training', training.eventId, 'no')"
-                                    class="btn btn-sm btn-outline-primary">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#eye"/>
-                                </svg>
-                            </button>
-
-                            <div>
-                                <app-participants [event]="training"></app-participants>
-                            </div>
-                        </td>
-                    </tr>
+                                    <button [hidden]="!showParticipantsViewButton('show', training)"
+                                            (click)="showParticipants4Event(training)"
+                                            class="btn btn-sm btn-outline-primary">
+                                        <svg class="octicon" aria-hidden="true">
+                                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#eye"/>
+                                        </svg>
+                                    </button>
+                                    <button [hidden]="!showParticipantsViewButton('hide', training)"
+                                            (click)="hideParticipants4Event()"
+                                            class="btn btn-sm btn-outline-primary">
+                                        <svg class="octicon" aria-hidden="true">
+                                            <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#circle-slash"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="innerTD  col-12">
+                                    <app-participants [selectedEvent]="selectedEvent"
+                                                      [event]="training"></app-participants>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
                     </tbody>
                 </table>
             </div>
