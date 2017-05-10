@@ -98,32 +98,52 @@
                         <td>{{match.endtime}}</td>
                         <td>{{match.gettogethertime}}</td>
                         <td>
-                        <span class="badges">
-                            <span class="badge badge-pill badge-success">{{match.participationYes.length}}</span>
-                            <span class="badge badge-pill badge-warning">{{match.participationMaybe.length}}</span>
-                            <span class="badge badge-pill badge-danger pull-right">{{match.participationNo.length}}</span>
-                        </span>
-                            <button [hidden]="!showButton('match', match.eventId, 'yes')"
-                                    (click)="changeParticipationState('match', match.eventId, 'yes')"
-                                    class="btn btn-sm btn-outline-success">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
-                                </svg>
-                            </button>
-                            <button [hidden]="!showButton('match', match.eventId, 'maybe')"
-                                    (click)="changeParticipationState('match', match.eventId, 'maybe')"
-                                    class="btn btn-sm btn-outline-warning">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
-                                </svg>
-                            </button>
-                            <button [hidden]="!showButton('match', match.eventId, 'no')"
-                                    (click)="changeParticipationState('match', match.eventId, 'no')"
-                                    class="btn btn-sm btn-outline-danger">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
-                                </svg>
-                            </button>
+                            <div class="innerTD col-12">
+                                <span class="badges">
+                                    <span class="badge badge-pill badge-success">{{match.participationYes.length}}</span>
+                                    <span class="badge badge-pill badge-warning">{{match.participationMaybe.length}}</span>
+                                    <span class="badge badge-pill badge-danger pull-right">{{match.participationNo.length}}</span>
+                                </span>
+                                <button [hidden]="!showButton('match', match.eventId, 'yes')"
+                                        (click)="changeParticipationState('match', match.eventId, 'yes')"
+                                        class="btn btn-sm btn-outline-success">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showButton('match', match.eventId, 'maybe')"
+                                        (click)="changeParticipationState('match', match.eventId, 'maybe')"
+                                        class="btn btn-sm btn-outline-warning">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showButton('match', match.eventId, 'no')"
+                                        (click)="changeParticipationState('match', match.eventId, 'no')"
+                                        class="btn btn-sm btn-outline-danger">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showParticipantsViewButton('show', match)"
+                                        (click)="showParticipants4Event(match)"
+                                        class="btn btn-sm btn-outline-primary">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#eye"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showParticipantsViewButton('hide', match)"
+                                        (click)="hideParticipants4Event()"
+                                        class="btn btn-sm btn-outline-primary">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#circle-slash"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="innerTD  col-12">
+                                <app-participants [selectedEvent]="selectedEvent"
+                                                  [event]="match"></app-participants>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -151,32 +171,52 @@
                         <td>{{tournament.endtime}}</td>
                         <td>{{tournament.gettogethertime}}</td>
                         <td>
-                        <span class="badges">
-                            <span class="badge badge-pill badge-success">{{tournament.participationYes.length}}</span>
-                            <span class="badge badge-pill badge-warning">{{tournament.participationMaybe.length}}</span>
-                            <span class="badge badge-pill badge-danger pull-right">{{tournament.participationNo.length}}</span>
-                        </span>
-                            <button [hidden]="!showButton('tournament', tournament.eventId, 'yes')"
-                                    (click)="changeParticipationState('tournament', tournament.eventId, 'yes')"
-                                    class="btn btn-sm btn-outline-success">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
-                                </svg>
-                            </button>
-                            <button [hidden]="!showButton('tournament', tournament.eventId, 'maybe')"
-                                    (click)="changeParticipationState('tournament', tournament.eventId, 'maybe')"
-                                    class="btn btn-sm btn-outline-warning">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
-                                </svg>
-                            </button>
-                            <button [hidden]="!showButton('tournament', tournament.eventId, 'no')"
-                                    (click)="changeParticipationState('tournament', tournament.eventId, 'no')"
-                                    class="btn btn-sm btn-outline-danger">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
-                                </svg>
-                            </button>
+                            <div class="innerTD col-12">
+                                <span class="badges">
+                                    <span class="badge badge-pill badge-success">{{tournament.participationYes.length}}</span>
+                                    <span class="badge badge-pill badge-warning">{{tournament.participationMaybe.length}}</span>
+                                    <span class="badge badge-pill badge-danger pull-right">{{tournament.participationNo.length}}</span>
+                                </span>
+                                <button [hidden]="!showButton('tournament', tournament.eventId, 'yes')"
+                                        (click)="changeParticipationState('tournament', tournament.eventId, 'yes')"
+                                        class="btn btn-sm btn-outline-success">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showButton('tournament', tournament.eventId, 'maybe')"
+                                        (click)="changeParticipationState('tournament', tournament.eventId, 'maybe')"
+                                        class="btn btn-sm btn-outline-warning">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showButton('tournament', tournament.eventId, 'no')"
+                                        (click)="changeParticipationState('tournament', tournament.eventId, 'no')"
+                                        class="btn btn-sm btn-outline-danger">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showParticipantsViewButton('show', tournament)"
+                                        (click)="showParticipants4Event(tournament)"
+                                        class="btn btn-sm btn-outline-primary">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#eye"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showParticipantsViewButton('hide', tournament)"
+                                        (click)="hideParticipants4Event()"
+                                        class="btn btn-sm btn-outline-primary">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#circle-slash"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="innerTD  col-12">
+                                <app-participants [selectedEvent]="selectedEvent"
+                                                  [event]="tournament"></app-participants>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -204,32 +244,52 @@
                         <td>{{teamevent.begintime}}</td>
                         <td>{{teamevent.endtime}}</td>
                         <td>
-                        <span class="badges">
-                            <span class="badge badge-pill badge-success">{{teamevent.participationYes.length}}</span>
-                            <span class="badge badge-pill badge-warning">{{teamevent.participationMaybe.length}}</span>
-                            <span class="badge badge-pill badge-danger pull-right">{{teamevent.participationNo.length}}</span>
-                        </span>
-                            <button [hidden]="!showButton('teamevent', teamevent.eventId, 'yes')"
-                                    (click)="changeParticipationState('teamevent', teamevent.eventId, 'yes')"
-                                    class="btn btn-sm btn-outline-success">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
-                                </svg>
-                            </button>
-                            <button [hidden]="!showButton('teamevent', teamevent.eventId, 'maybe')"
-                                    (click)="changeParticipationState('teamevent', teamevent.eventId, 'maybe')"
-                                    class="btn btn-sm btn-outline-warning">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
-                                </svg>
-                            </button>
-                            <button [hidden]="!showButton('teamevent', teamevent.eventId, 'no')"
-                                    (click)="changeParticipationState('teamevent', teamevent.eventId, 'no')"
-                                    class="btn btn-sm btn-outline-danger">
-                                <svg class="octicon" aria-hidden="true">
-                                    <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
-                                </svg>
-                            </button>
+                            <div class="innerTD col-12">
+                                <span class="badges">
+                                    <span class="badge badge-pill badge-success">{{teamevent.participationYes.length}}</span>
+                                    <span class="badge badge-pill badge-warning">{{teamevent.participationMaybe.length}}</span>
+                                    <span class="badge badge-pill badge-danger pull-right">{{teamevent.participationNo.length}}</span>
+                                </span>
+                                <button [hidden]="!showButton('teamevent', teamevent.eventId, 'yes')"
+                                        (click)="changeParticipationState('teamevent', teamevent.eventId, 'yes')"
+                                        class="btn btn-sm btn-outline-success">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsup"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showButton('teamevent', teamevent.eventId, 'maybe')"
+                                        (click)="changeParticipationState('teamevent', teamevent.eventId, 'maybe')"
+                                        class="btn btn-sm btn-outline-warning">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#question"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showButton('teamevent', teamevent.eventId, 'no')"
+                                        (click)="changeParticipationState('teamevent', teamevent.eventId, 'no')"
+                                        class="btn btn-sm btn-outline-danger">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#thumbsdown"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showParticipantsViewButton('show', teamevent)"
+                                        (click)="showParticipants4Event(teamevent)"
+                                        class="btn btn-sm btn-outline-primary">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#eye"/>
+                                    </svg>
+                                </button>
+                                <button [hidden]="!showParticipantsViewButton('hide', teamevent)"
+                                        (click)="hideParticipants4Event()"
+                                        class="btn btn-sm btn-outline-primary">
+                                    <svg class="octicon" aria-hidden="true">
+                                        <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#circle-slash"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="innerTD  col-12">
+                                <app-participants [selectedEvent]="selectedEvent"
+                                                  [event]="teamevent"></app-participants>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
