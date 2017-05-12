@@ -9,6 +9,7 @@ import {LoginService} from "./service/login.service";
 import {EventService} from "./service/event.service";
 import {PersonService} from "./service/person.service";
 import {DataService} from "./service/data.service";
+import {ExerciseService} from "./service/exercise.service";
 import {AppComponent} from "./app.component";
 import {PersonDetailComponent} from "./component/person-detail/person-detail.component";
 import {DashboardComponent} from "./component/dashboard/dashboard.component";
@@ -22,8 +23,10 @@ import {NotFoundComponent} from "./component/not-found/not-found.component";
 import {EventsComponent} from "./component/events/events.component";
 import {EventDetailComponent} from "./component/event-detail/event-detail.component";
 import {ParticipantsComponent} from "./component/participants/participants.component";
+import {ExercisesComponent} from "./component/exercises/exercises.component";
 import {CKEditorModule} from "ng2-ckeditor";
 import {DataTablesModule} from "angular-datatables";
+import {AdminGuard} from "./guard/AdminGuard";
 
 @NgModule({
     declarations: [
@@ -39,7 +42,8 @@ import {DataTablesModule} from "angular-datatables";
         EventCardComponent,
         NotFoundComponent,
         EventsComponent,
-        ParticipantsComponent
+        ParticipantsComponent,
+        ExercisesComponent
     ],
     imports: [
         BrowserModule,
@@ -50,7 +54,7 @@ import {DataTablesModule} from "angular-datatables";
         CKEditorModule,
         DataTablesModule
     ],
-    providers: [ClubService, PersonService, LoginService, EventService, DataService,
+    providers: [AdminGuard, ClubService, PersonService, LoginService, ExerciseService, EventService, DataService,
         {provide: LOCALE_ID, useValue: "de-DE"}],
     bootstrap: [AppComponent]
 })

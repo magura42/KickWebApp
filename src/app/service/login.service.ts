@@ -37,6 +37,9 @@ export class LoginService {
     }
 
     isAdmin():boolean {
+        if (typeof this.sessionData === 'undefined') {
+            return false;
+        }
         return this.sessionData.role === 'coach';
     }
 

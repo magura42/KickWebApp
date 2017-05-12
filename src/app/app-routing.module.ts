@@ -7,12 +7,15 @@ import {ClubInfoComponent} from "./club-info/club-info.component";
 import {TeamComponent} from "./component/team/team.component";
 import {NotFoundComponent} from "./component/not-found/not-found.component";
 import {EventsComponent} from "./component/events/events.component";
+import {ExercisesComponent} from "./component/exercises/exercises.component";
 import {EventDetailComponent} from "./component/event-detail/event-detail.component";
+import {AdminGuard} from "./guard/AdminGuard";
 
 const routes:Routes = [
     {path: 'dashboard/:teamId', component: DashboardComponent},
     {path: 'team/:id', component: TeamComponent},
     {path: 'events/:teamId', component: EventsComponent},
+    {path: 'exercises', component: ExercisesComponent, canActivate: [AdminGuard]},
     {path: 'persondetail/:id', component: PersonDetailComponent},
     {path: 'eventdetail', component: EventDetailComponent},
     {path: 'clubinfo', component: ClubInfoComponent},

@@ -30,6 +30,9 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/clubdetail', sessionData.clubid]" routerLinkActive="active">Verein</a>
                 </li>
+                <li *ngIf="isAdmin()" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/exercises']" routerLinkActive="active">Übungen</a>
+                </li>
             </ul>
         </div>
     </nav>
