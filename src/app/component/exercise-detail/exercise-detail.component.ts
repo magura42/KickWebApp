@@ -37,15 +37,17 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
             this.exercise = exercise;
 
             this.exerciseForm = this.formBuilder.group({
-                name: [{value: '', disabled: this.onlyView()}, Validators.required],
+                exerciseid: [''],
+                name: [{value: '', disabled: this.onlyView()}, [Validators.required, Validators.maxLength(100)]],
                 exerciseType: [{value: '', disabled: this.onlyView()}, Validators.required],
-                setup: [{value: '', disabled: this.onlyView()}],
-                execution: [{value: '', disabled: this.onlyView()}],
-                variants: [{value: '', disabled: this.onlyView()}],
-                note: [{value: '', disabled: this.onlyView()}]
+                setup: [{value: '', disabled: this.onlyView()}, Validators.maxLength(500)],
+                execution: [{value: '', disabled: this.onlyView()}, Validators.maxLength(2000)],
+                variants: [{value: '', disabled: this.onlyView()}, Validators.maxLength(500)],
+                note: [{value: '', disabled: this.onlyView()}, Validators.maxLength(500)]
             });
 
             this.exerciseForm.patchValue({
+                exerciseid: this.exercise.exerciseid,
                 name: this.exercise.name,
                 exerciseType: this.exercise.exercisetype,
                 variants: this.exercise.variants,
@@ -74,8 +76,8 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
 
     save(model:Exercise, isValid:boolean):void {
         console.log("onSbumit: " + this.exerciseForm.value);
-        // this.exerciseService.update(this.exercise)
-        //     .then(() => this.goBack());
+        this.exerciseService.update(this.exerciseForm.value)
+            .then(() => this.goBack());
     }
 
 }
