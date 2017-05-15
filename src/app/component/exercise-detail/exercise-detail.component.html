@@ -1,0 +1,86 @@
+<div *ngIf="exercise">
+    <div class="exercise-detail card col-md-12 col-lg-6">
+
+
+        <div class="card-block">
+
+            <form [formGroup]="exerciseForm" (ngSubmit)="save(exerciseForm.value, exerciseForm.valid)">
+
+                <!-- name -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                        <input formControlName="name"
+                               class="col-12 form-control-static">
+                        <p *ngIf="exerciseForm.controls.name.errors">Pflichtfeld!</p>
+                    </div>
+                </div>
+
+                <!-- type -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                        <select formControlName="exerciseType" class="form-control">
+                            <option *ngFor="let exerciseType of exerciseTypes()" value="{{exerciseType}}">
+                                {{getExerciseTypStr(exerciseType)}}
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- setup -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Setup</label>
+                    <div class="col-sm-8">
+                        <textarea formControlName="setup"
+                                  class="col-12 form-control-static"></textarea>
+                        <p *ngIf="exerciseForm.controls.setup.errors">Pflichtfeld!</p>
+                    </div>
+                </div>
+
+                <!-- execution -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Ausführung</label>
+                    <div class="col-sm-8">
+                        <textarea formControlName="execution"
+                                  class="col-12 form-control-static"></textarea>
+                        <p *ngIf="exerciseForm.controls.execution.errors">Pflichtfeld!</p>
+                    </div>
+                </div>
+
+                <!-- variants -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Varianten</label>
+                    <div class="col-sm-8">
+                        <textarea formControlName="variants"
+                                  class="col-12 form-control-static"></textarea>
+                        <p *ngIf="exerciseForm.controls.variants.errors">Pflichtfeld!</p>
+                    </div>
+                </div>
+
+                <!-- graphics -->
+
+                <!-- note -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Bemerkung</label>
+                    <div class="col-sm-8">
+                        <textarea formControlName="note"
+                                  class="col-12 form-control-static"></textarea>
+                        <p *ngIf="exerciseForm.controls.note.errors">Pflichtfeld!</p>
+                    </div>
+                </div>
+
+                <div class="button-bar">
+                    <button *ngIf="isAdmin()" [disabled]="exerciseForm.invalid" class="btn btn-sm btn-outline-primary"
+                            type="submit">Speichern
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Zurück</button>
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>

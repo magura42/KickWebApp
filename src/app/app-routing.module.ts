@@ -10,6 +10,7 @@ import {EventsComponent} from "./component/events/events.component";
 import {ExercisesComponent} from "./component/exercises/exercises.component";
 import {EventDetailComponent} from "./component/event-detail/event-detail.component";
 import {AdminGuard} from "./guard/AdminGuard";
+import {ExerciseDetailComponent} from "./component/exercise-detail/exercise-detail.component";
 
 const routes:Routes = [
     {path: 'dashboard/:teamId', component: DashboardComponent},
@@ -20,6 +21,7 @@ const routes:Routes = [
     {path: 'eventdetail', component: EventDetailComponent},
     {path: 'clubinfo', component: ClubInfoComponent},
     {path: 'clubdetail/:id', component: ClubDetailComponent},
+    {path: 'exercisedetail/:id', component: ExerciseDetailComponent},
     {path: '404', component: NotFoundComponent},
     {path: '**', redirectTo: '404'}
 ];

@@ -19,12 +19,10 @@ export class AppComponent extends CommonComponent implements OnInit {
 
     constructor(loginService:LoginService, location:Location, private router:Router) {
         super(loginService, location);
-        console.log("constructor AppComponent");
     }
 
     initSessionData():void {
         this.loginService.login(environment.username, environment.password).then(sessionData => {
-            console.log("session data: " + sessionData.personname);
             this.loginService.setSessionData(sessionData);
             this.sessionData = sessionData;
             this.router.navigate(['/dashboard', sessionData.clubid]);
@@ -32,7 +30,6 @@ export class AppComponent extends CommonComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("ngOnInit AppComponent");
         this.initSessionData();
     }
 }

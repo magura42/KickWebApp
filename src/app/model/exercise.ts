@@ -1,3 +1,5 @@
+import {ExerciseType} from "../enum/exerciseType";
+
 export class Exercise {
 
     exerciseid:number;
@@ -7,5 +9,5 @@ export class Exercise {
     execution:string;
     variants:string;
     graphic:string;
-    note:number;
+    note:string = '';
 }

@@ -10,13 +10,11 @@
             </tr>
             </thead>
             <tbody>
-            <ng-container *ngFor="let exercise of exercises; let i = index;"
-                          (dblclick)="showExerciseDetails(exercise);">
-                <tr>
+            <ng-container *ngFor="let exercise of exercises; let i = index;">
+                <tr (dblclick)="showExerciseDetails(exercise.exerciseid);">
                     <td>{{exercise.name}}</td>
-                    <td>{{enumExerciseType[exercise.exercisetype].toString()}}</td>
+                    <td>{{getExerciseTypStr(exercise.exercisetype)}}</td>
                     <td>{{exercise.note}}</td>
-
                 </tr>
             </ng-container>
             </tbody>

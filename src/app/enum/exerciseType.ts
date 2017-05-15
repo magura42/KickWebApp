@@ -1,17 +1,13 @@
 export enum ExerciseType {
-    warmup = "Aufwärmen",
-    shot = "Torschuss"
+    warmup,
+    shot,
+    pass,
+    trick,
+    duel,
+    goalkeeper,
+    header,
+    indoor,
+    freeplay,
+    feeling
 }
 
-namespace ExerciseType {
-    export function toString(exerciseType: ExerciseType) {
-        switch (exerciseType) {
-            case ExerciseType.warmup:
-                return "Aufwärmen"
-            case ExerciseType.shot:
-                return "Torschuss";
-            default:
-                return "Sonstiges";
-        }
-    }
-}

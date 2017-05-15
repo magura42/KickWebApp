@@ -15,23 +15,10 @@ export class DashboardComponent implements OnInit {
     constructor(private clubService:ClubService, private loginService:LoginService,
                 private route:ActivatedRoute) {
         this.teamId = +this.route.snapshot.params['teamId'];
-        console.log("constructor DashboardComponent");
 
     }
 
-    // getCurrentClub(): void {
-    //
-    //   this.clubService.getClub(this.loginService.getSessionData().clubid).then(club => {
-    //     console.log("test"+ club);
-    //     this.currentClub = club
-    //   });
-    // }
-
     ngOnInit() {
-        console.log("ngOnInit DashboardComponent");
-        // if (typeof this.loginService.getSessionData() !== 'undefined') {
-        //   this.getCurrentClub();
-        // }
     }
 
 }

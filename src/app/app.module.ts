@@ -1,6 +1,6 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule, LOCALE_ID} from "@angular/core";
-import {FormsModule} from "@angular/forms";
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {TabsModule} from "ng2-bootstrap/tabs";
 import {AppRoutingModule} from "./app-routing.module";
@@ -24,6 +24,7 @@ import {EventsComponent} from "./component/events/events.component";
 import {EventDetailComponent} from "./component/event-detail/event-detail.component";
 import {ParticipantsComponent} from "./component/participants/participants.component";
 import {ExercisesComponent} from "./component/exercises/exercises.component";
+import {ExerciseDetailComponent} from "./component/exercise-detail/exercise-detail.component";
 import {CKEditorModule} from "ng2-ckeditor";
 import {DataTablesModule} from "angular-datatables";
 import {AdminGuard} from "./guard/AdminGuard";
@@ -43,11 +44,13 @@ import {AdminGuard} from "./guard/AdminGuard";
         NotFoundComponent,
         EventsComponent,
         ParticipantsComponent,
-        ExercisesComponent
+        ExercisesComponent,
+        ExerciseDetailComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         AppRoutingModule,
         TabsModule.forRoot(),
