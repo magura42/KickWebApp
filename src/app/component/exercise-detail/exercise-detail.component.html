@@ -1,12 +1,33 @@
 <div *ngIf="exercise">
     <div class="exercise-detail card col-md-12 col-lg-6">
 
-
         <div class="card-block">
+
+            <div *ngIf="isAdmin()" class="form-group row">
+                <div class="col-12 changeView">
+                        <span>
+                        <button [hidden]="viewMode" type="button"
+                                (click)="setViewMode(true)"
+                                class="btn btn-sm btn-outline-primary">
+                            <svg class="octicon" aria-hidden="true">
+                                <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#eye"/>
+                            </svg>
+                        </button>
+                        <button [hidden]="!viewMode" type="button"
+                                (click)="setViewMode(false)"
+                                class="btn btn-sm btn-outline-primary">
+                            <svg class="octicon" aria-hidden="true">
+                                <use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#tools"/>
+                            </svg>
+                        </button>
+                            </span>
+                </div>
+            </div>
 
             <form [formGroup]="exerciseForm" (ngSubmit)="save(exerciseForm.value, exerciseForm.valid)">
 
                 <input hidden formControlName="exerciseid">
+
 
                 <!-- name -->
                 <div class="form-group row">
@@ -41,7 +62,7 @@
                     <label class="col-sm-4 col-form-label">Grafik</label>
                     <div class="col-sm-8">
 
-                        <div class="col-12 form-control-static">
+                        <div class="col-12 form-control-static exercise-detail--graphic">
 
                             <div [hidden]="graphicError ===''"
                                  class="alert alert-danger fade show"
@@ -52,7 +73,7 @@
                             <img class="exerciseDetail--foto img-thumbnail rounded" [src]="exercise.graphic"
                                  onError="this.src='src/assets/placeholder_graphic.png';"/>
 
-                            <label [hidden]="onlyView()" for="graphicFile" class="btn btn-sm btn-outline-primary">
+                            <label [hidden]="viewMode" for="graphicFile" class="btn btn-sm btn-outline-primary">
                                 Bild wählen</label>
                             <input id="graphicFile" hidden type="file"
                                    accept="image/jpeg, image/png"
@@ -65,8 +86,12 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Setup</label>
                     <div class="col-sm-8">
-                        <textarea rows="5" formControlName="setup"
-                                  class="col-12 form-control-static"></textarea>
+
+                        <ckeditor *ngIf="!viewMode"
+                                  formControlName="setup"
+                                  [config]="config">
+                        </ckeditor>
+                        <div *ngIf="viewMode" [innerHTML]="exerciseForm.controls['setup'].value"></div>
                         <div class="alert alert-danger" *ngIf="exerciseForm.controls.setup.hasError('maxlength')">
                             Max. Länge: 500 Zeichen
                         </div>
@@ -77,8 +102,13 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Ausführung</label>
                     <div class="col-sm-8">
-                        <textarea rows="5" formControlName="execution"
-                                  class="col-12 form-control-static"></textarea>
+
+                        <ckeditor *ngIf="!viewMode"
+                                  formControlName="execution"
+                                  [config]="config">
+                        </ckeditor>
+                        <div *ngIf="viewMode" [innerHTML]="exerciseForm.controls['execution'].value"></div>
+
                         <div class="alert alert-danger" *ngIf="exerciseForm.controls.execution.hasError('maxlength')">
                             Max. Länge: 2000 Zeichen
                         </div>
@@ -89,8 +119,11 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Varianten</label>
                     <div class="col-sm-8">
-                        <textarea rows="5" formControlName="variants"
-                                  class="col-12 form-control-static"></textarea>
+                        <ckeditor *ngIf="!viewMode"
+                                  formControlName="variants"
+                                  [config]="config">
+                        </ckeditor>
+                        <div *ngIf="viewMode" [innerHTML]="exerciseForm.controls['variants'].value"></div>
                         <div class="alert alert-danger" *ngIf="exerciseForm.controls.variants.hasError('maxlength')">
                             Max. Länge: 500 Zeichen
                         </div>
@@ -101,8 +134,11 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Bemerkung</label>
                     <div class="col-sm-8">
-                        <textarea rows="5" formControlName="note"
-                                  class="col-12 form-control-static"></textarea>
+                        <ckeditor *ngIf="!viewMode"
+                                  formControlName="note"
+                                  [config]="config">
+                        </ckeditor>
+                        <div *ngIf="viewMode" [innerHTML]="exerciseForm.controls['note'].value"></div>
                         <div class="alert alert-danger" *ngIf="exerciseForm.controls.note.hasError('maxlength')">
                             Max. Länge: 500 Zeichen
                         </div>
@@ -110,7 +146,8 @@
                 </div>
 
                 <div class="button-bar">
-                    <button *ngIf="isAdmin()" [disabled]="exerciseForm.invalid" class="btn btn-sm btn-outline-primary"
+                    <button *ngIf="isAdmin() && !viewMode" [disabled]="exerciseForm.invalid"
+                            class="btn btn-sm btn-outline-primary"
                             type="submit">Speichern
                     </button>
                     <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Zurück</button>

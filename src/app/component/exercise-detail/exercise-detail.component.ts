@@ -25,6 +25,10 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
         return keys.slice(keys.length / 2);
     }
 
+    viewMode:boolean = true;
+
+    config:Object;
+
     exerciseForm:FormGroup;
 
     exercise:Exercise;
@@ -34,6 +38,14 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
     constructor(private element:ElementRef, private formBuilder:FormBuilder, loginService:LoginService, private exerciseService:ExerciseService, location:Location, route:ActivatedRoute,
                 private dataService:DataService) {
         super(loginService, location);
+
+        this.config = {
+            toolbar: [
+                ['Source', '-', 'Bold', 'Italic'],
+                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+            ]
+        };
+
         let exerciseId = route.snapshot.params['id'];
         this.exerciseService.getExercise(exerciseId).then(exercise => {
 
@@ -41,12 +53,12 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
 
             this.exerciseForm = this.formBuilder.group({
                 exerciseid: [''],
-                name: [{value: '', disabled: this.onlyView()}, [Validators.required, Validators.maxLength(100)]],
-                exercisetype: [{value: '', disabled: this.onlyView()}, Validators.required],
-                setup: [{value: '', disabled: this.onlyView()}, Validators.maxLength(500)],
-                execution: [{value: '', disabled: this.onlyView()}, Validators.maxLength(2000)],
-                variants: [{value: '', disabled: this.onlyView()}, Validators.maxLength(500)],
-                note: [{value: '', disabled: this.onlyView()}, Validators.maxLength(500)]
+                name: [{value: '', disabled: this.viewMode}, [Validators.required, Validators.maxLength(100)]],
+                exercisetype: [{value: '', disabled: this.viewMode}, Validators.required],
+                setup: [{value: '', disabled: this.viewMode}, Validators.maxLength(500)],
+                execution: [{value: '', disabled: this.viewMode}, Validators.maxLength(2000)],
+                variants: [{value: '', disabled: this.viewMode}, Validators.maxLength(500)],
+                note: [{value: '', disabled: this.viewMode}, Validators.maxLength(500)]
             });
 
             this.exerciseForm.patchValue({
@@ -59,6 +71,25 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
                 note: this.exercise.note
             });
         });
+    }
+
+    setViewMode(viewMode:boolean) {
+        if (viewMode) {
+            this.exerciseForm.controls['name'].disable();
+            this.exerciseForm.controls['exercisetype'].disable();
+            this.exerciseForm.controls['setup'].disable();
+            this.exerciseForm.controls['execution'].disable();
+            this.exerciseForm.controls['variants'].disable();
+            this.exerciseForm.controls['note'].disable();
+        } else {
+            this.exerciseForm.controls['name'].enable();
+            this.exerciseForm.controls['exercisetype'].enable();
+            this.exerciseForm.controls['setup'].enable();
+            this.exerciseForm.controls['execution'].enable();
+            this.exerciseForm.controls['variants'].enable();
+            this.exerciseForm.controls['note'].enable();
+        }
+        this.viewMode = viewMode;
     }
 
     changeListner(event) {
