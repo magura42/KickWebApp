@@ -25,14 +25,39 @@
 
                 <!-- type -->
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Name</label>
+                    <label class="col-sm-4 col-form-label">Typ</label>
                     <div class="col-sm-8">
-                        <select formControlName="exerciseType" class="form-control">
-                            <option *ngFor="let exerciseType of exerciseTypes()" value="{{exerciseType}}">
-                                {{getExerciseTypStr(exerciseType)}}
+                        <select formControlName="exercisetype" class="form-control">
+                            <option *ngFor="let exercisetype of exerciseTypes()" value="{{exercisetype}}">
+                                {{getExerciseTypStr(exercisetype)}}
                             </option>
                         </select>
 
+                    </div>
+                </div>
+
+                <!-- graphics -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Grafik</label>
+                    <div class="col-sm-8">
+
+                        <div class="col-12 form-control-static">
+
+                            <div [hidden]="graphicError ===''"
+                                 class="alert alert-danger fade show"
+                                 role="alert">
+                                {{graphicError}}
+                            </div>
+
+                            <img class="exerciseDetail--foto img-thumbnail rounded" [src]="exercise.graphic"
+                                 onError="this.src='src/assets/placeholder_graphic.png';"/>
+
+                            <label [hidden]="onlyView()" for="graphicFile" class="btn btn-sm btn-outline-primary">
+                                Bild wählen</label>
+                            <input id="graphicFile" hidden type="file"
+                                   accept="image/jpeg, image/png"
+                                   (change)="changeListner($event)"/>
+                        </div>
                     </div>
                 </div>
 
@@ -71,8 +96,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- graphics -->
 
                 <!-- note -->
                 <div class="form-group row">

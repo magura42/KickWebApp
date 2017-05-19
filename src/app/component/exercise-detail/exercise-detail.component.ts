@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges} from "@angular/core";
+import {Component, OnInit, OnChanges, ElementRef} from "@angular/core";
 import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
 import {CommonComponent} from "../common.component";
@@ -9,6 +9,7 @@ import {DataService} from "../../service/data.service";
 import {ActivatedRoute} from "@angular/router";
 import {ExerciseType} from "../../enum/exerciseType";
 import {ExerciseTypeUtil} from "../../enum/exerciseTypeUtil";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-exercise-detail',
@@ -28,7 +29,9 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
 
     exercise:Exercise;
 
-    constructor(private formBuilder:FormBuilder, loginService:LoginService, private exerciseService:ExerciseService, location:Location, route:ActivatedRoute,
+    graphicError:string = '';
+
+    constructor(private element:ElementRef, private formBuilder:FormBuilder, loginService:LoginService, private exerciseService:ExerciseService, location:Location, route:ActivatedRoute,
                 private dataService:DataService) {
         super(loginService, location);
         let exerciseId = route.snapshot.params['id'];
@@ -39,7 +42,7 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
             this.exerciseForm = this.formBuilder.group({
                 exerciseid: [''],
                 name: [{value: '', disabled: this.onlyView()}, [Validators.required, Validators.maxLength(100)]],
-                exerciseType: [{value: '', disabled: this.onlyView()}, Validators.required],
+                exercisetype: [{value: '', disabled: this.onlyView()}, Validators.required],
                 setup: [{value: '', disabled: this.onlyView()}, Validators.maxLength(500)],
                 execution: [{value: '', disabled: this.onlyView()}, Validators.maxLength(2000)],
                 variants: [{value: '', disabled: this.onlyView()}, Validators.maxLength(500)],
@@ -49,13 +52,32 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
             this.exerciseForm.patchValue({
                 exerciseid: this.exercise.exerciseid,
                 name: this.exercise.name,
-                exerciseType: this.exercise.exercisetype,
+                exercisetype: this.exercise.exercisetype,
                 variants: this.exercise.variants,
                 setup: this.exercise.setup,
                 execution: this.exercise.execution,
                 note: this.exercise.note
             });
         });
+    }
+
+    changeListner(event) {
+        if (event.target.files && event.target.files[0]) {
+            var reader:FileReader = new FileReader();
+            var image = this.element.nativeElement.querySelector('.exerciseDetail--foto');
+            this.graphicError = "";
+
+            if (event.target.files[0].size > environment.graphicSize) {
+                this.graphicError = 'Bild zu groß (max ' + environment.graphicSizeLabel + ')';
+                return false;
+            }
+
+            reader.onload = function (event:any) {
+                var src = event.target.result;
+                image.src = src;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
     }
 
     onlyView() {
@@ -75,8 +97,11 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
     }
 
     save(model:Exercise, isValid:boolean):void {
+        var image = this.element.nativeElement.querySelector('.exerciseDetail--foto');
+        this.exercise = this.exerciseForm.value;
+        this.exercise.graphic = image.src;
         console.log("onSbumit: " + this.exerciseForm.value);
-        this.exerciseService.update(this.exerciseForm.value)
+        this.exerciseService.update(this.exercise)
             .then(() => this.goBack());
     }
 
