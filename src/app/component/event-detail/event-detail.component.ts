@@ -18,9 +18,15 @@ export class EventDetailComponent extends CommonComponent implements OnInit {
 
     event:Event;
 
+    viewMode:boolean = true;
+
     constructor(loginService:LoginService, route:ActivatedRoute, private eventService:EventService,
                 location:Location, private dataService:DataService) {
         super(loginService, location);
+    }
+
+    setViewMode(viewMode:boolean) {
+        this.viewMode = viewMode;
     }
 
     selectEvent() {
@@ -36,6 +42,11 @@ export class EventDetailComponent extends CommonComponent implements OnInit {
     }
 
     save():void {
+
+        if (this.event.eventType === 'training') {
+            this.eventService.updateTrainingelements(this.event.trainingelements, this.event.eventId);
+        }
+
         this.eventService.update(this.event)
             .then(() => this.goBack());
     }

@@ -4,6 +4,7 @@ import {Event} from "../model/event";
 import {environment} from "../../environments/environment";
 import "rxjs/add/operator/toPromise";
 import {Participant} from "../model/participant";
+import {TrainingElement} from "../model/trainingelement";
 
 @Injectable()
 export class EventService {
@@ -13,7 +14,7 @@ export class EventService {
     constructor(private http:Http) {
     }
 
-    showButton(state: string, event: Event, personid: number) {
+    showButton(state:string, event:Event, personid:number) {
         if (state === 'yes') {
             return event.participationYes.findIndex(p => p.participantId === personid) === -1;
         } else if (state === 'maybe') {
@@ -24,7 +25,7 @@ export class EventService {
         return false;
     }
 
-    changeParticipationState(state: string, personid: number, event: Event) {
+    changeParticipationState(state:string, personid:number, event:Event) {
 
         var name:string;
 
@@ -48,7 +49,7 @@ export class EventService {
         }
 
         // add new participation status:
-        var participant: Participant = new Participant(personid, name);
+        var participant:Participant = new Participant(personid, name);
         if (state === 'yes') {
             event.participationYes.push(participant);
         } else if (state === 'maybe') {
@@ -77,6 +78,19 @@ export class EventService {
             .put(url, JSON.stringify(event), {headers: this.headers})
             .toPromise()
             .then(() => event)
+            .catch(this.handleError);
+    }
+
+    updateTrainingelements(trainingelements:TrainingElement[], trainingid:number) {
+
+        const url = '${environment.backendUrl}trainingelement';
+
+        this.http.delete(url + '?trainingid=' + trainingid, {headers: this.headers}).toPromise()
+            .then(function (response) {
+                for (let trainingelement of trainingelements) {
+                    this.http.post(url, JSON.stringify(trainingelement), {headers: this.headers});
+                }
+            })
             .catch(this.handleError);
     }
 

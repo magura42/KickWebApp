@@ -1,4 +1,5 @@
 import {Participant} from "./participant";
+import {TrainingElement} from "./trainingelement";
 export class Event {
 
     eventId:number;
@@ -19,4 +20,5 @@ export class Event {
     telefon:string;
     web:string;
     teamId:number;
+    trainingelements: TrainingElement[];
 }
