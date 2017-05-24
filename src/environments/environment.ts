@@ -12,6 +12,6 @@ export const environment = {
   personFotoSize: 102400,
   personFotoSizeLabel: '100kb',
   graphicSize: 102400,
-  graphicSizeLabel: '100kb'
+  graphicSizeLabel: '100kb',
   backendUrl: 'https://kickappserver.herokuapp.com/'
 };
