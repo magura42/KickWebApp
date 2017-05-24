@@ -15,9 +15,10 @@
                         </div>
 
                         <img class="personDetail--foto img-thumbnail rounded" [src]="person.foto"
-                             onError="this.src='src/assets/placeholder_person.png';"/>
+                             onError="this.src='assets/placeholder_person.png';"/>
 
-                        <label [hidden]="!isPersonDetailsAdmin()" for="fotoFile" class="personDetail--selectFotoLabel btn btn-sm btn-outline-primary">Foto wählen</label>
+                        <label [hidden]="!isPersonDetailsAdmin()" for="fotoFile"
+                               class="personDetail--selectFotoLabel btn btn-sm btn-outline-primary">Foto wählen</label>
                         <input class="personDetail--selectFoto" id="fotoFile" *ngIf="isPersonDetailsAdmin()" type="file"
                                accept="image/jpeg, image/png"
                                (change)="changeListner($event)"/>
@@ -91,7 +92,8 @@
         </div>
 
         <div class="button-bar">
-            <button *ngIf="isPersonDetailsAdmin()" class="btn btn-sm btn-outline-primary" (click)="save()">Speichern</button>
+            <button *ngIf="isPersonDetailsAdmin()" class="btn btn-sm btn-outline-primary" (click)="save()">Speichern
+            </button>
             <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Zurück</button>
         </div>
     </div>

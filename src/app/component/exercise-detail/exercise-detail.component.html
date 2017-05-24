@@ -10,14 +10,14 @@
                                 (click)="setViewMode(true)"
                                 class="btn btn-sm btn-outline-primary">
                             <svg class="octicon" aria-hidden="true">
-                                <use xlink:href="src/assets/sprite.octicons.svg#eye"/>
+                                <use xlink:href="assets/sprite.octicons.svg#eye"/>
                             </svg>
                         </button>
                         <button [hidden]="!viewMode" type="button"
                                 (click)="setViewMode(false)"
                                 class="btn btn-sm btn-outline-primary">
                             <svg class="octicon" aria-hidden="true">
-                                <use xlink:href="src/assets/sprite.octicons.svg#tools"/>
+                                <use xlink:href="assets/sprite.octicons.svg#tools"/>
                             </svg>
                         </button>
                             </span>
@@ -71,7 +71,7 @@
                             </div>
 
                             <img class="exerciseDetail--foto img-thumbnail rounded" [src]="exercise.graphic"
-                                 onError="this.src='src/assets/placeholder_graphic.png';"/>
+                                 onError="this.src='assets/placeholder_graphic.png';"/>
 
                             <label [hidden]="viewMode" for="graphicFile" class="btn btn-sm btn-outline-primary">
                                 Bild wählen</label>

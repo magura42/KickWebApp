@@ -6,21 +6,21 @@
                     class="list-group-item justify-content-between">
                     {{participant.name}}
                     <svg class="octicon icon icon-success" aria-hidden="true">
-                        <use xlink:href="src/assets/sprite.octicons.svg#thumbsup"/>
+                        <use xlink:href="assets/sprite.octicons.svg#thumbsup"/>
                     </svg>
 
                     <button [hidden]="!showButton('maybe', participant.participantId)"
                             (click)="changeParticipationState('maybe', participant.participantId)"
                             class="btn btn-sm btn-outline-warning">
                         <svg class="octicon icon" aria-hidden="true">
-                            <use xlink:href="src/assets/sprite.octicons.svg#question"/>
+                            <use xlink:href="assets/sprite.octicons.svg#question"/>
                         </svg>
                     </button>
                     <button [hidden]="!showButton('no', participant.participantId)"
                             (click)="changeParticipationState('no', participant.participantId)"
                             class="btn btn-sm btn-outline-danger">
                         <svg class="octicon icon" aria-hidden="true">
-                            <use xlink:href="src/assets/sprite.octicons.svg#thumbsdown"/>
+                            <use xlink:href="assets/sprite.octicons.svg#thumbsdown"/>
                         </svg>
                     </button>
                 </li>
@@ -28,20 +28,20 @@
                     class="list-group-item justify-content-between">
                     {{participant.name}}
                     <svg class="octicon icon icon-warning" aria-hidden="true">
-                        <use xlink:href="src/assets/sprite.octicons.svg#question"/>
+                        <use xlink:href="assets/sprite.octicons.svg#question"/>
                     </svg>
                     <button [hidden]="!showButton('yes', participant.participantId)"
                             (click)="changeParticipationState('yes', participant.participantId)"
                             class="btn btn-sm btn-outline-success">
                         <svg class="octicon icon" aria-hidden="true">
-                            <use xlink:href="src/assets/sprite.octicons.svg#thumbsup"/>
+                            <use xlink:href="assets/sprite.octicons.svg#thumbsup"/>
                         </svg>
                     </button>
                     <button [hidden]="!showButton('no', participant.participantId)"
                             (click)="changeParticipationState('no', participant.participantId)"
                             class="btn btn-sm btn-outline-danger">
                         <svg class="octicon icon" aria-hidden="true">
-                            <use xlink:href="src/assets/sprite.octicons.svg#thumbsdown"/>
+                            <use xlink:href="assets/sprite.octicons.svg#thumbsdown"/>
                         </svg>
                     </button>
                 </li>
@@ -49,20 +49,20 @@
                     class="list-group-item justify-content-between">
                     {{participant.name}}
                     <svg class="octicon icon icon-danger" aria-hidden="true">
-                        <use xlink:href="src/assets/sprite.octicons.svg#thumbsdown"/>
+                        <use xlink:href="assets/sprite.octicons.svg#thumbsdown"/>
                     </svg>
                     <button [hidden]="!showButton('yes', participant.participantId)"
                             (click)="changeParticipationState('yes', participant.participantId)"
                             class="btn btn-sm btn-outline-success">
                         <svg class="octicon icon" aria-hidden="true">
-                            <use xlink:href="src/assets/sprite.octicons.svg#thumbsup"/>
+                            <use xlink:href="assets/sprite.octicons.svg#thumbsup"/>
                         </svg>
                     </button>
                     <button [hidden]="!showButton('maybe', participant.participantId)"
                             (click)="changeParticipationState('maybe', participant.participantId)"
                             class="btn btn-sm btn-outline-warning">
                         <svg class="octicon icon" aria-hidden="true">
-                            <use xlink:href="src/assets/sprite.octicons.svg#question"/>
+                            <use xlink:href="assets/sprite.octicons.svg#question"/>
                         </svg>
                     </button>
                 </li>
