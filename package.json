@@ -27,6 +27,7 @@
     "@angular/router": "^3.4.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
+    "@types/datatables.net": "^1.10.1",
     "angular-datatables": "^2.3.0",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
