@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, AfterViewInit} from "@angular/core";
 import {LoginService} from "./service/login.service";
 import {environment} from "../environments/environment";
 import {SessionData} from "./model/sessionData";
@@ -11,7 +11,7 @@ import {Location} from "@angular/common";
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent extends CommonComponent implements OnInit {
+export class AppComponent extends CommonComponent implements OnInit, AfterViewInit {
 
     title = 'KickWebApp v0.1';
 
@@ -31,5 +31,12 @@ export class AppComponent extends CommonComponent implements OnInit {
 
     ngOnInit() {
         this.initSessionData();
+    }
+
+    ngAfterViewInit() {
+        $('body').on('click', '.nav-link', function () {
+            $('.navbar').addClass('collapsed');
+            $('.navbar-collapse').removeClass('show');
+        });
     }
 }
