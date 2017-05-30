@@ -1,1 +1,1 @@
-web npm start --environment=production
+web npm start --environment=prod

@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  envName: 'prod',
   username: 'mharrer',
   password: 'mharrer',
   backendUrl: 'https://kickappserver.herokuapp.com/',
