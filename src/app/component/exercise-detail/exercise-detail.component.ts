@@ -52,23 +52,13 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
             this.exercise = exercise;
 
             this.exerciseForm = this.formBuilder.group({
-                exerciseid: [''],
-                name: [{value: '', disabled: this.viewMode}, [Validators.required, Validators.maxLength(100)]],
-                exercisetype: [{value: '', disabled: this.viewMode}, Validators.required],
-                setup: [{value: '', disabled: this.viewMode}, Validators.maxLength(500)],
-                execution: [{value: '', disabled: this.viewMode}, Validators.maxLength(2000)],
-                variants: [{value: '', disabled: this.viewMode}, Validators.maxLength(500)],
-                note: [{value: '', disabled: this.viewMode}, Validators.maxLength(500)]
-            });
-
-            this.exerciseForm.patchValue({
-                exerciseid: this.exercise.exerciseid,
-                name: this.exercise.name,
-                exercisetype: this.exercise.exercisetype,
-                variants: this.exercise.variants,
-                setup: this.exercise.setup,
-                execution: this.exercise.execution,
-                note: this.exercise.note
+                exerciseid: [this.exercise.exerciseid],
+                name: [{value: this.exercise.name, disabled: this.viewMode}, [Validators.required, Validators.maxLength(100)]],
+                exercisetype: [{value: this.exercise.exercisetype, disabled: this.viewMode}, Validators.required],
+                setup: [{value: this.exercise.setup, disabled: this.viewMode}, Validators.maxLength(500)],
+                execution: [{value: this.exercise.execution, disabled: this.viewMode}, Validators.maxLength(2000)],
+                variants: [{value: this.exercise.variants, disabled: this.viewMode}, Validators.maxLength(500)],
+                note: [{value: this.exercise.note, disabled: this.viewMode}, Validators.maxLength(500)]
             });
         });
     }
