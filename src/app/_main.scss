@@ -15,9 +15,13 @@
   height: 100%;
 }
 
+/** cards */
 .card {
   .card-title {
     display: inline;
+  }
+  .col-form-label {
+    font-weight: bold;
   }
   .badges {
     float: right;
@@ -28,8 +32,13 @@
   }
 }
 
+/** button to switch view mode */
+.changeView {
+  text-align: right;
+}
+
+/** tables */
 .dataTable {
 
   padding-top: 15px;
-
 }

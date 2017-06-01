@@ -75,19 +75,13 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
 
     setViewMode(viewMode:boolean) {
         if (viewMode) {
-            this.exerciseForm.controls['name'].disable();
-            this.exerciseForm.controls['exercisetype'].disable();
-            this.exerciseForm.controls['setup'].disable();
-            this.exerciseForm.controls['execution'].disable();
-            this.exerciseForm.controls['variants'].disable();
-            this.exerciseForm.controls['note'].disable();
+            Object.values(this.exerciseForm.controls).forEach(function (control) {
+                control.disable();
+            });
         } else {
-            this.exerciseForm.controls['name'].enable();
-            this.exerciseForm.controls['exercisetype'].enable();
-            this.exerciseForm.controls['setup'].enable();
-            this.exerciseForm.controls['execution'].enable();
-            this.exerciseForm.controls['variants'].enable();
-            this.exerciseForm.controls['note'].enable();
+            Object.values(this.exerciseForm.controls).forEach(function (control) {
+                control.enable();
+            });
         }
         this.viewMode = viewMode;
     }
@@ -111,9 +105,6 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
         }
     }
 
-    onlyView() {
-        return !this.isAdmin();
-    }
 
     getExerciseTypStr(exerciseType:string) {
         return ExerciseTypeUtil.getLabel(exerciseType);
