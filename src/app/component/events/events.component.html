@@ -9,8 +9,8 @@
                     <tr>
                         <th>Datum</th>
                         <th>Beginn</th>
-                        <th>Ende</th>
-                        <th>Treffen</th>
+                        <th class="hidden-sm-down">Ende</th>
+                        <th class="hidden-sm-down">Treffen</th>
                         <th>Teilnahme</th>
                     </tr>
                     </thead>
@@ -18,8 +18,8 @@
                     <tr *ngFor="let training of trainings; let i = index;"
                         (dblclick)="showEventDetails(training);">
                         <td>{{training.date}}</td>
-                        <td>{{training.begintime}}</td>
-                        <td>{{training.endtime}}</td>
+                        <td class="hidden-sm-down">{{training.begintime}}</td>
+                        <td class="hidden-sm-down">{{training.endtime}}</td>
                         <td>{{training.gettogethertime}}</td>
                         <td>
                             <div class="innerTD col-12">
@@ -83,8 +83,8 @@
                     <tr>
                         <th>Datum</th>
                         <th>Beginn</th>
-                        <th>Ende</th>
-                        <th>Treffen</th>
+                        <th class="hidden-sm-down">Ende</th>
+                        <th class="hidden-sm-down">Treffen</th>
                         <th>Teilnahme</th>
                     </tr>
                     </thead>
@@ -93,8 +93,8 @@
                         (dblclick)="showEventDetails(match);">
                         <td>{{match.date}}</td>
                         <td>{{match.begintime}}</td>
-                        <td>{{match.endtime}}</td>
-                        <td>{{match.gettogethertime}}</td>
+                        <td class="hidden-sm-down">{{match.endtime}}</td>
+                        <td class="hidden-sm-down">{{match.gettogethertime}}</td>
                         <td>
                             <div class="innerTD col-12">
                                 <span class="badges">
@@ -156,8 +156,8 @@
                     <tr>
                         <th>Datum</th>
                         <th>Beginn</th>
-                        <th>Ende</th>
-                        <th>Treffen</th>
+                        <th class="hidden-sm-down">Ende</th>
+                        <th class="hidden-sm-down">Treffen</th>
                         <th>Teilnahme</th>
                     </tr>
                     </thead>
@@ -166,8 +166,8 @@
                         (dblclick)="showEventDetails(tournament);">
                         <td>{{tournament.date}}</td>
                         <td>{{tournament.begintime}}</td>
-                        <td>{{tournament.endtime}}</td>
-                        <td>{{tournament.gettogethertime}}</td>
+                        <td class="hidden-sm-down">{{tournament.endtime}}</td>
+                        <td class="hidden-sm-down">{{tournament.gettogethertime}}</td>
                         <td>
                             <div class="innerTD col-12">
                                 <span class="badges">
@@ -229,8 +229,8 @@
                     <tr>
                         <th>Datum</th>
                         <th>Name</th>
-                        <th>Beginn</th>
-                        <th>Ende</th>
+                        <th class="hidden-sm-down">Beginn</th>
+                        <th class="hidden-sm-down">Ende</th>
                         <th>Teilnahme</th>
                     </tr>
                     </thead>
@@ -239,8 +239,8 @@
                         (dblclick)="showEventDetails(teamevent);">
                         <td>{{teamevent.date}}</td>
                         <td>{{teamevent.name}}</td>
-                        <td>{{teamevent.begintime}}</td>
-                        <td>{{teamevent.endtime}}</td>
+                        <td class="hidden-sm-down">{{teamevent.begintime}}</td>
+                        <td class="hidden-sm-down">{{teamevent.endtime}}</td>
                         <td>
                             <div class="innerTD col-12">
                                 <span class="badges">

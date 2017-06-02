@@ -9,16 +9,16 @@
                     <tr>
                         <th>Nachname</th>
                         <th>Vorname</th>
-                        <th>Passnummer</th>
-                        <th>Geburtsdatum</th>
+                        <th class="hidden-sm-down">Passnummer</th>
+                        <th class="hidden-sm-down">Geburtsdatum</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let player of players; let i = index;" (dblclick)="showPersonDetails(player.personid);">
                         <td>{{player.lastname}}</td>
                         <td>{{player.firstname}}</td>
-                        <td>{{player.passnumber}}</td>
-                        <td>{{player.birthday | date}}</td>
+                        <td class="hidden-sm-down">{{player.passnumber}}</td>
+                        <td class="hidden-sm-down">{{player.birthday | date}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -32,16 +32,16 @@
                     <tr>
                         <th>Nachname</th>
                         <th>Vorname</th>
-                        <th>Telefon</th>
-                        <th>E-Mail</th>
+                        <th class="hidden-sm-down">Telefon</th>
+                        <th class="hidden-sm-down">E-Mail</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let coach of coaches; let i = index;" (dblclick)="showPersonDetails(player.personid);">
                         <td>{{coach.lastname}}</td>
                         <td>{{coach.firstname}}</td>
-                        <td>{{coach.telephone}}</td>
-                        <td>{{coach.email}}</td>
+                        <td class="hidden-sm-down">{{coach.telephone}}</td>
+                        <td class="hidden-sm-down">{{coach.email}}</td>
                     </tr>
                     </tbody>
                 </table>
