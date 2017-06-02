@@ -34,6 +34,8 @@
     "datatables.net": "^1.10.13",
     "datatables.net-dt": "^1.10.13",
     "express": "^4.14.1",
+    "hammer-timejs": "^1.1.0",
+    "hammerjs": "^2.0.8",
     "jquery": "^3.2.1",
     "ng2-bootstrap": "^1.4.2",
     "ng2-ckeditor": "^1.1.6",

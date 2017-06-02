@@ -14,7 +14,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let player of players; let i = index;" (dblclick)="showPersonDetails(player.personid);">
+                    <tr *ngFor="let player of players; let i = index;" (tap)="showPersonDetails(player.personid);">
                         <td>{{player.lastname}}</td>
                         <td>{{player.firstname}}</td>
                         <td class="hidden-sm-down">{{player.passnumber}}</td>
@@ -37,7 +37,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let coach of coaches; let i = index;" (dblclick)="showPersonDetails(player.personid);">
+                    <tr *ngFor="let coach of coaches; let i = index;" (tap)="showPersonDetails(player.personid);">
                         <td>{{coach.lastname}}</td>
                         <td>{{coach.firstname}}</td>
                         <td class="hidden-sm-down">{{coach.telephone}}</td>

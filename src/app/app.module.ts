@@ -28,6 +28,8 @@ import {ExerciseDetailComponent} from "./component/exercise-detail/exercise-deta
 import {CKEditorModule} from "ng2-ckeditor";
 import {DataTablesModule} from "angular-datatables";
 import {AdminGuard} from "./guard/AdminGuard";
+import 'hammerjs';
+import 'hammer-timejs';
 
 @NgModule({
     declarations: [

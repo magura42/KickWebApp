@@ -1,5 +1,5 @@
 <div *ngIf="events" class="row">
-    <div *ngFor="let event of events; let i = index;" (dblclick)="showEventDetails(event);"
+    <div *ngFor="let event of events; let i = index;" (tap)="showEventDetails(event);"
          class="col-sm-6 col-lg-3">
         <app-event-card [eventId]="event.eventId" [eventType]="event.eventType">card {{event.eventId}}</app-event-card>
     </div>

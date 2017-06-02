@@ -16,7 +16,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let training of trainings; let i = index;"
-                        (dblclick)="showEventDetails(training);">
+                        (tap)="showEventDetails(training);">
                         <td>{{training.date}}</td>
                         <td class="hidden-sm-down">{{training.begintime}}</td>
                         <td class="hidden-sm-down">{{training.endtime}}</td>
@@ -90,7 +90,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let match of matches; let i = index;"
-                        (dblclick)="showEventDetails(match);">
+                        (tap)="showEventDetails(match);">
                         <td>{{match.date}}</td>
                         <td>{{match.begintime}}</td>
                         <td class="hidden-sm-down">{{match.endtime}}</td>
@@ -163,7 +163,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let tournament of tournaments; let i = index;"
-                        (dblclick)="showEventDetails(tournament);">
+                        (tap)="showEventDetails(tournament);">
                         <td>{{tournament.date}}</td>
                         <td>{{tournament.begintime}}</td>
                         <td class="hidden-sm-down">{{tournament.endtime}}</td>
@@ -236,7 +236,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let teamevent of teamevents; let i = index;"
-                        (dblclick)="showEventDetails(teamevent);">
+                        (tap)="showEventDetails(teamevent);">
                         <td>{{teamevent.date}}</td>
                         <td>{{teamevent.name}}</td>
                         <td class="hidden-sm-down">{{teamevent.begintime}}</td>

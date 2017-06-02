@@ -11,7 +11,7 @@
             </thead>
             <tbody>
             <ng-container *ngFor="let exercise of exercises; let i = index;">
-                <tr (dblclick)="showExerciseDetails(exercise.exerciseid);">
+                <tr (tap)="showExerciseDetails(exercise.exerciseid);">
                     <td>{{exercise.name}}</td>
                     <td>{{getExerciseTypStr(exercise.exercisetype)}}</td>
                     <td class="hidden-sm-down">{{exercise.note}}</td>
