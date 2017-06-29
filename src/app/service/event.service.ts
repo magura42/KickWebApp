@@ -81,6 +81,15 @@ export class EventService {
             .catch(this.handleError);
     }
 
+    getTrainingelements(trainingid:number):Promise<TrainingElement[]> {
+        const url = `${environment.backendUrl}trainingelement?trainingid=`;
+        return this.http.get(url + trainingid, {headers: this.headers})
+            .toPromise()
+            .then(response =>
+                response.json() as TrainingElement)
+            .catch(this.handleError);
+    }
+
     updateTrainingelements(trainingelements:TrainingElement[], trainingid:number) {
 
         const url = '${environment.backendUrl}trainingelement';

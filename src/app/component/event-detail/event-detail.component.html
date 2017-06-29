@@ -70,6 +70,46 @@
                     </div>
                 </div>
 
+                <!-- Uebungen -->
+                <div *ngIf="isTraining()" class="form-group row">
+
+                    <label class="col-sm-4 col-form-label">Übungen</label>
+                    <div class="col-sm-8">
+
+                        <div *ngIf="!viewMode" class="col-12 exercises btn-group">
+                            <select (change)="onExerciseChange($event.target.value)"
+                                    class="event-detail-exercise form-control">
+                                <option *ngFor="let exercise of allExercises" value="{{exercise.exerciseid}}">
+                                    {{exercise.name}}
+                                </option>
+                            </select>
+                            <span (tap)="addExercise()"
+                                  class="btn btn-sm btn-outline-primary">
+                                <svg class="octicon" aria-hidden="true">
+                                    <use xlink:href="assets/sprite.octicons.svg#plus"/>
+                                </svg>
+                            </span>
+                        </div>
+
+
+                        <div class="col-12 exercises">
+                            <ul formArrayName="exercises" class="list-group">
+
+                                <li *ngFor="let exercise of assignedExercises"
+                                    class="list-group-item justify-content-between">
+                                    <a (tap)="showExerciseDetail(exercise.exerciseid)">{{exercise.name}}</a>
+                                    <button *ngIf="!viewMode" (tap)="removeExercise(exercise.exerciseid)"
+                                            class="btn btn-sm btn-outline-danger">
+                                        <svg class="octicon" aria-hidden="true">
+                                            <use xlink:href="assets/sprite.octicons.svg#x"/>
+                                        </svg>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Treffen um -->
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Treffen</label>
@@ -127,7 +167,8 @@
 
                 <div class="button-bar">
                     <button *ngIf="isAdmin() && !viewMode" [disabled]="eventForm.invalid"
-                            class="btn btn-sm btn-outline-primary" type="submit">Speichern</button>
+                            class="btn btn-sm btn-outline-primary" type="submit">Speichern
+                    </button>
                     <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Zurück</button>
                 </div>
 
