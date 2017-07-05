@@ -1,24 +1,23 @@
 import {Participant} from "./participant";
-import {TrainingElement} from "./trainingelement";
 export class Event {
 
-    eventId:number;
-    name:string;
-    eventType:string;
-    street:string;
-    zipcode:string;
-    city:string;
-    date:Date;
     begintime:string;
-    endtime:string;
-    gettogethertime:string;
-    participationYes:Participant[];
-    participationNo:Participant[];
-    participationMaybe:Participant[];
-    email:string;
+    city:string;
     contact:string;
+    date:Date;
+    email:string;
+    endtime:string;
+    eventId:number;
+    eventType:string;
+    gettogethertime:string;
+    name:string;
+    participationMaybe:Participant[];
+    participationNo:Participant[];
+    participationYes:Participant[];
+    street:string;
+    teamId:number;
     telefon:string;
     web:string;
-    teamId:number;
-    trainingelements: TrainingElement[];
+    zipcode:string;
+
 }

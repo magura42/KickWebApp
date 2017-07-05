@@ -1,17 +1,18 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http} from "@angular/http";
+import {Http} from "@angular/http";
 import {Event} from "../model/event";
 import {environment} from "../../environments/environment";
 import "rxjs/add/operator/toPromise";
 import {Participant} from "../model/participant";
 import {TrainingElement} from "../model/trainingelement";
+import {CommonService} from "./common.service";
 
 @Injectable()
-export class EventService {
+export class EventService extends CommonService {
 
-    private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http:Http) {
+        super();
     }
 
     showButton(state:string, event:Event, personid:number) {
@@ -63,7 +64,6 @@ export class EventService {
     }
 
     getEvent(eventid:number, eventType:string):Promise<Event> {
-        this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}${eventType}/${eventid}/event`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
@@ -73,9 +73,13 @@ export class EventService {
     }
 
     update(event:Event):Promise<Event> {
-        const url = `${environment.backendUrl}event/${event.eventId}`;
+        const url = `${environment.backendUrl}${event.eventType}/${event.eventId}`;
+        var jsonStr = JSON.stringify(event);
+        if (event.eventType === 'training') {
+            jsonStr = jsonStr.replace('eventId', 'trainingId');
+        }
         return this.http
-            .put(url, JSON.stringify(event), {headers: this.headers})
+            .put(url, jsonStr, {headers: this.headers})
             .toPromise()
             .then(() => event)
             .catch(this.handleError);
@@ -92,19 +96,24 @@ export class EventService {
 
     updateTrainingelements(trainingelements:TrainingElement[], trainingid:number) {
 
-        const url = '${environment.backendUrl}trainingelement';
+        const deleteUrl = `${environment.backendUrl}trainingelement/training/${trainingid}`;
+        const postUrl = `${environment.backendUrl}trainingelement`;
+        let httpService = this.http;
+        let headerValues = this.headers;
 
-        this.http.delete(url + '?trainingid=' + trainingid, {headers: this.headers}).toPromise()
+        httpService.delete(deleteUrl, {headers: this.headers}).toPromise()
             .then(function (response) {
                 for (let trainingelement of trainingelements) {
-                    this.http.post(url, JSON.stringify(trainingelement), {headers: this.headers});
+                    httpService.post(postUrl, JSON.stringify(trainingelement), {headers: headerValues})
+                        .toPromise().catch(
+                        () => console.error('Unable to add new trainings element!')
+                    );
                 }
             })
             .catch(this.handleError);
     }
 
     getTrainings(teamid:number):Promise<Event[]> {
-        this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}team/${teamid}/trainings`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
@@ -114,7 +123,6 @@ export class EventService {
     }
 
     getEvents(teamid:number):Promise<Event[]> {
-        this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}team/${teamid}/events`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
@@ -124,7 +132,6 @@ export class EventService {
     }
 
     getTournaments(teamid:number):Promise<Event[]> {
-        this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}team/${teamid}/tournaments`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
@@ -134,7 +141,6 @@ export class EventService {
     }
 
     getTeamevents(teamid:number):Promise<Event[]> {
-        this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}team/${teamid}/teamevents`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
@@ -144,7 +150,6 @@ export class EventService {
     }
 
     getMatches(teamid:number):Promise<Event[]> {
-        this.headers.append('Access-Control-Allow-Origin', '*');
         const url = `${environment.backendUrl}team/${teamid}/matches`;
         return this.http.get(url, {headers: this.headers})
             .toPromise()
@@ -153,8 +158,4 @@ export class EventService {
             .catch(this.handleError);
     }
 
-    private handleError(error:any):Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
-    }
 }

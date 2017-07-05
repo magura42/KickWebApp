@@ -55,10 +55,12 @@ export class EventDetailComponent extends CommonComponent implements OnInit {
                 private exerciseService:ExerciseService) {
         super(loginService, location);
 
-
         this.event = this.dataService.currentEvent;
 
         this.eventForm = this.formBuilder.group({
+            eventId: [this.event.eventId],
+            teamId: [this.event.teamId],
+            eventType: [this.event.eventType],
             date: [{value: this.event.date, disabled: this.viewMode}, Validators.required],
             endtime: [{value: this.event.endtime, disabled: this.viewMode}, Validators.required],
             begintime: [{value: this.event.begintime, disabled: this.viewMode}, Validators.required],
@@ -76,8 +78,8 @@ export class EventDetailComponent extends CommonComponent implements OnInit {
                     this.trainingelements = elements as Array<TrainingElement>;
 
                     this.patchExercises();
-                    if (this.trainingelements.length > 0) {
-                        this.selectedExerciseId = this.trainingelements[0].exerciseid;
+                    if (this.allExercises.length > 0) {
+                        this.selectedExerciseId = this.allExercises[0].exerciseid;
                     }
                 });
             });
@@ -143,9 +145,8 @@ export class EventDetailComponent extends CommonComponent implements OnInit {
     save(model:Event, isValid:boolean):void {
         console.log("Save event...");
         this.event = model;
-
         if (this.event.eventType === 'training') {
-            this.eventService.updateTrainingelements(this.event.trainingelements, this.event.eventId);
+            this.eventService.updateTrainingelements(this.trainingelements, this.event.eventId);
         }
 
         this.eventService.update(this.event)
@@ -171,8 +172,11 @@ export class EventDetailComponent extends CommonComponent implements OnInit {
     }
 
     addExercise() {
-        this.trainingelements.push(new TrainingElement(this.event.eventId, this.selectedExerciseId));
-        this.patchExercises();
+        if (typeof this.assignedExercises === 'undefined' ||
+            this.assignedExercises.filter(element => element.exerciseid === this.selectedExerciseId).length === 0) {
+            this.trainingelements.push(new TrainingElement(this.event.eventId, this.selectedExerciseId));
+            this.patchExercises();
+        }
     }
 
     onExerciseChange(selectedExerciseId:string) {

@@ -29,6 +29,12 @@
 
             <form [formGroup]="eventForm" (ngSubmit)="save(eventForm.value, eventForm.valid)">
 
+                <input hidden formControlName="eventId">
+
+                <input hidden formControlName="teamId">
+
+                <input hidden formControlName="eventType">
+
                 <!-- Datum -->
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Datum</label>
@@ -83,7 +89,7 @@
                                     {{exercise.name}}
                                 </option>
                             </select>
-                            <span (tap)="addExercise()"
+                            <span (tap)="addExercise(); $event.preventDefault()"
                                   class="btn btn-sm btn-outline-primary">
                                 <svg class="octicon" aria-hidden="true">
                                     <use xlink:href="assets/sprite.octicons.svg#plus"/>
@@ -98,7 +104,8 @@
                                 <li *ngFor="let exercise of assignedExercises"
                                     class="list-group-item justify-content-between">
                                     <a (tap)="showExerciseDetail(exercise.exerciseid)">{{exercise.name}}</a>
-                                    <button *ngIf="!viewMode" (tap)="removeExercise(exercise.exerciseid)"
+                                    <button *ngIf="!viewMode"
+                                            (tap)="removeExercise(exercise.exerciseid); $event.preventDefault()"
                                             class="btn btn-sm btn-outline-danger">
                                         <svg class="octicon" aria-hidden="true">
                                             <use xlink:href="assets/sprite.octicons.svg#x"/>
