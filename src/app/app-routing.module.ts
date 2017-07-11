@@ -5,6 +5,7 @@ import {DashboardComponent} from "./component/dashboard/dashboard.component";
 import {ClubDetailComponent} from "./component/club-detail/club-detail.component";
 import {ClubInfoComponent} from "./club-info/club-info.component";
 import {TeamComponent} from "./component/team/team.component";
+import {PushNotificationComponent} from "./component/push-notification/push-notification.component";
 import {NotFoundComponent} from "./component/not-found/not-found.component";
 import {EventsComponent} from "./component/events/events.component";
 import {ExercisesComponent} from "./component/exercises/exercises.component";
@@ -20,6 +21,7 @@ const routes:Routes = [
     {path: 'persondetail/:id', component: PersonDetailComponent},
     {path: 'eventdetail', component: EventDetailComponent},
     {path: 'clubinfo', component: ClubInfoComponent},
+    {path: 'pushNotification', component: PushNotificationComponent},
     {path: 'clubdetail/:id', component: ClubDetailComponent},
     {path: 'exercisedetail/:id', component: ExerciseDetailComponent},
     {path: '404', component: NotFoundComponent},

@@ -13,6 +13,22 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+### Production Build
+#### Build
+ng build --prod
+
+#### Run
+live-server dist --entry-file=index.html
+
 ## Build/Run with different environment
 ng build  --environment=production
 ng serve  --environment=production
+
+## WebPush Keys
+
+Public Key:
+BFrGxm0AcjvuDK9KOMLO1fZ8jlKmXUc7QFgf8qXesuxro8yTGDBgtEdaAXeYQ93DP5JoZWsTt6hAX_qNBPjewBs
+
+Private Key:
+kYZEFbS-3Of4pJN2Sku3TwxD1nqmbBVcNpae6FPpgnY
+

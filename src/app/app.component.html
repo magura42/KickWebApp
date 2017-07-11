@@ -30,6 +30,9 @@
                 <li *ngIf="isAdmin()" class="nav-item">
                     <a class="nav-link" [routerLink]="['/exercises']" routerLinkActive="active">Übungen</a>
                 </li>
+                <li *ngIf="isAdmin()" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/pushNotification']" routerLinkActive="active">Push-Nachricht</a>
+                </li>
             </ul>
         </div>
     </nav>

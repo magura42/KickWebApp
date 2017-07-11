@@ -15,4 +15,8 @@ export const environment = {
     graphicSize: 102400,
     graphicSizeLabel: '100kb',
     //backendUrl: 'https://kickappserver.herokuapp.com/'
+    pushNotifications: {
+        publicKey: 'BFrGxm0AcjvuDK9KOMLO1fZ8jlKmXUc7QFgf8qXesuxro8yTGDBgtEdaAXeYQ93DP5JoZWsTt6hAX_qNBPjewBs',
+        privateKey: 'kYZEFbS-3Of4pJN2Sku3TwxD1nqmbBVcNpae6FPpgnY'
+    }
 };

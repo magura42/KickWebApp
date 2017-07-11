@@ -1,4 +1,5 @@
 import {BrowserModule} from "@angular/platform-browser";
+import {ServiceWorkerModule} from "@angular/service-worker";
 import {NgModule, LOCALE_ID} from "@angular/core";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
@@ -10,6 +11,7 @@ import {EventService} from "./service/event.service";
 import {PersonService} from "./service/person.service";
 import {DataService} from "./service/data.service";
 import {ExerciseService} from "./service/exercise.service";
+import {PushNotificationService} from "./service/pushNotification.service";
 import {AppComponent} from "./app.component";
 import {PersonDetailComponent} from "./component/person-detail/person-detail.component";
 import {DashboardComponent} from "./component/dashboard/dashboard.component";
@@ -25,11 +27,12 @@ import {EventDetailComponent} from "./component/event-detail/event-detail.compon
 import {ParticipantsComponent} from "./component/participants/participants.component";
 import {ExercisesComponent} from "./component/exercises/exercises.component";
 import {ExerciseDetailComponent} from "./component/exercise-detail/exercise-detail.component";
+import {PushNotificationComponent} from "./component/push-notification/push-notification.component";
 import {CKEditorModule} from "ng2-ckeditor";
 import {DataTablesModule} from "angular-datatables";
 import {AdminGuard} from "./guard/AdminGuard";
-import 'hammerjs';
-import 'hammer-timejs';
+import "hammerjs";
+import "hammer-timejs";
 
 @NgModule({
     declarations: [
@@ -47,7 +50,8 @@ import 'hammer-timejs';
         EventsComponent,
         ParticipantsComponent,
         ExercisesComponent,
-        ExerciseDetailComponent
+        ExerciseDetailComponent,
+        PushNotificationComponent
     ],
     imports: [
         BrowserModule,
@@ -57,10 +61,11 @@ import 'hammer-timejs';
         AppRoutingModule,
         TabsModule.forRoot(),
         CKEditorModule,
-        DataTablesModule
+        DataTablesModule,
+        ServiceWorkerModule
     ],
     providers: [AdminGuard, ClubService, PersonService, LoginService, ExerciseService, EventService, DataService,
-        {provide: LOCALE_ID, useValue: "de-DE"}],
+        PushNotificationService, {provide: LOCALE_ID, useValue: "de-DE"}],
     bootstrap: [AppComponent]
 })
 export class AppModule {

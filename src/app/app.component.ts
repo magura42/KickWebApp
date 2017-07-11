@@ -5,6 +5,8 @@ import {SessionData} from "./model/sessionData";
 import {Router} from "@angular/router";
 import {CommonComponent} from "./component/common.component";
 import {Location} from "@angular/common";
+import {NgServiceWorker} from "@angular/service-worker";
+import {PushNotificationService} from "./service/pushNotification.service";
 
 @Component({
     selector: 'app-root',
@@ -17,8 +19,32 @@ export class AppComponent extends CommonComponent implements OnInit, AfterViewIn
 
     sessionData:SessionData;
 
-    constructor(loginService:LoginService, location:Location, private router:Router) {
+    constructor(private pushNotificationService:PushNotificationService, private sw:NgServiceWorker,
+                loginService:LoginService, location:Location, private router:Router) {
         super(loginService, location);
+
+        this.initServiceWorker();
+    }
+
+    initServiceWorker() {
+
+        console.log('init service worker...');
+
+        this.sw.registerForPush({
+            applicationServerKey: `${environment.pushNotifications.publicKey}`
+        })
+            .subscribe(registration => {
+                    console.log('successfully registered!');
+                    this.pushNotificationService.registerForPushNotification(registration);
+
+                },
+                err => {
+                    console.log('error registering for push', err);
+                });
+
+        this.sw.push.subscribe(push => {
+            console.log('received push message', push);
+        });
     }
 
     initSessionData():void {

@@ -1,0 +1,56 @@
+<div class="pushNotification">
+    <div class="card col-md-12 col-lg-6">
+
+        <div class="card-block">
+            <form [formGroup]="pushNotificationForm"
+                  (ngSubmit)="send(pushNotificationForm.controls.pushMsg.value, pushNotificationForm.controls.pushTitle.value,pushNotificationForm.valid)">
+
+                <!-- Titel -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Titel</label>
+                    <div class="col-sm-8">
+                        <input formControlName="pushTitle" type="text"
+                               class="col-12 form-control-static">
+                        <div class="alert alert-danger"
+                             *ngIf="pushNotificationForm.controls.pushTitle.hasError('required')">
+                            Pflichtfeld!
+                        </div>
+                        <div class="alert alert-danger"
+                             *ngIf="pushNotificationForm.controls.pushTitle.hasError('maxlength')">
+                            Max. Länge: 20 Zeichen
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nachricht -->
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Nachricht</label>
+                    <div class="col-sm-8">
+                        <textarea formControlName="pushMsg" rows="3"
+                                  class="col-12 form-control-static"></textarea>
+                        <div class="alert alert-danger"
+                             *ngIf="pushNotificationForm.controls.pushMsg.hasError('required')">
+                            Pflichtfeld!
+                        </div>
+                        <div class="alert alert-danger"
+                             *ngIf="pushNotificationForm.controls.pushMsg.hasError('maxlength')">
+                            Max. Länge: 100 Zeichen
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-bar">
+                    <button class="btn btn-sm btn-outline-primary" [disabled]="pushNotificationForm.invalid"
+                            type="submit">Senden
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">Zurück</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+
+
