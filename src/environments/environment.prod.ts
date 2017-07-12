@@ -4,6 +4,7 @@ export const environment = {
   username: 'mharrer',
   password: 'mharrer',
   backendUrl: 'https://kickappserver.herokuapp.com/',
+  // backendUrl: 'http://localhost:9000/',
   personFotoSize: 102400,
   personFotoSizeLabel: '100kb',
   graphicSize: 102400,

@@ -3,9 +3,12 @@ import {Http} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {NgPushRegistration} from "@angular/service-worker";
 import {environment} from "../../environments/environment";
+import {PushRegistration} from "../model/pushRegistration";
+import {CommonService} from "./common.service";
+import {PushNotification} from "../model/pushNotification";
 
 @Injectable()
-export class PushNotificationService {
+export class PushNotificationService extends CommonService {
 
     registration:NgPushRegistration;
 
@@ -20,26 +23,41 @@ export class PushNotificationService {
 
 
     constructor(private http:Http) {
+        super();
     }
 
     sendPushMsg(msg:string, title:string) {
         console.log('sendPushMsg..');
-        let payload = JSON.stringify({
-            notification: {
-                title: title,
-                body: msg
-            }
-        });
-        console.log('payload: ' + payload);
-        console.log('options ', this.options);
-        //TODO use backend for sending push notification!
+        // let payload = JSON.stringify({
+        //     notification: {
+        //         title: title,
+        //         body: msg
+        //     }
+        // });
+        // console.log('payload: ' + payload);
+        // console.log('options ', this.options);
+
+        let pushNotification = new PushNotification(title, msg);
+        const url = `${environment.backendUrl}pushnotification`;
+        return this.http
+            .post(url, JSON.stringify(pushNotification), {headers: this.headers})
+            .toPromise()
+            .catch(this.handleError);
     }
 
 
     registerForPushNotification(registration:NgPushRegistration) {
         console.log('registerForPushNotification ', registration);
-        // TODO use backend for registration!!!
-        this.registration = registration;
+
+        let pushRegistration:PushRegistration = new PushRegistration(registration.url, registration.auth(), registration.key());
+
+        console.log(JSON.stringify(registration));
+
+        const url = `${environment.backendUrl}pushregistration`;
+        return this.http
+            .post(url, JSON.stringify(pushRegistration), {headers: this.headers})
+            .toPromise()
+            .catch(this.handleError);
     }
 
 
