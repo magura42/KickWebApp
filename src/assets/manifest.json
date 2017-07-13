@@ -7,7 +7,7 @@
     "scope": "/",
     "start_url": "/",
     "icons": [{
-        "src": "assets/ball.png",
+        "src": "./ball.png",
         "sizes": "32x32",
         "type": "image/png"
     }]
