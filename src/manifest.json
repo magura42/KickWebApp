@@ -5,5 +5,10 @@
     "background_color": "#10c327",
     "display": "standalone",
     "scope": "/",
-    "start_url": "/"
+    "start_url": "/",
+    "icons": [{
+        "src": "assets/ball.png",
+        "sizes": "32x32",
+        "type": "image/png"
+    }]
 }
