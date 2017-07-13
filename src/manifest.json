@@ -1,0 +1,9 @@
+{
+    "name": "KickIt",
+    "short_name": "KickIt",
+    "theme_color": "#33810a",
+    "background_color": "#10c327",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/"
+}
