@@ -6,9 +6,15 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "icons": [{
-        "src": "./ball.png",
-        "sizes": "32x32",
-        "type": "image/png"
-    }]
+    "icons": [
+        {
+            "src": "./ball.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "./ball.svg",
+            "sizes": "48x48 72x72 96x96 128x128 256x256"
+        }
+    ]
 }
