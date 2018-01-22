@@ -1,9 +1,9 @@
-import {Component, OnInit, OnChanges, ElementRef} from "@angular/core";
+import {Component, ElementRef, OnChanges, OnInit} from "@angular/core";
 import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
 import {CommonComponent} from "../common.component";
 import {Exercise} from "../../model/exercise";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ExerciseService} from "../../service/exercise.service";
 import {DataService} from "../../service/data.service";
 import {ActivatedRoute} from "@angular/router";
@@ -22,28 +22,28 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
     enumExerciseType = ExerciseType;
     enumTeamType = TeamType;
 
-    exerciseTypes():Array<string> {
+    exerciseTypes(): Array<string> {
         var keys = Object.keys(this.enumExerciseType);
         return keys.slice(keys.length / 2);
     }
 
-    teamTypes():Array<string> {
+    teamTypes(): Array<string> {
         var keys = Object.keys(this.enumTeamType);
         return keys.slice(keys.length / 2);
     }
 
-    viewMode:boolean = true;
+    viewMode: boolean = true;
 
-    config:Object;
+    config: Object;
 
-    exerciseForm:FormGroup;
+    exerciseForm: FormGroup;
 
-    exercise:Exercise;
+    exercise: Exercise;
 
-    graphicError:string = '';
+    graphicError: string = '';
 
-    constructor(private element:ElementRef, private formBuilder:FormBuilder, loginService:LoginService, private exerciseService:ExerciseService, location:Location, route:ActivatedRoute,
-                private dataService:DataService) {
+    constructor(private element: ElementRef, private formBuilder: FormBuilder, loginService: LoginService, private exerciseService: ExerciseService, location: Location, route: ActivatedRoute,
+                private dataService: DataService) {
         super(loginService, location);
 
         this.config = {
@@ -60,7 +60,10 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
 
             this.exerciseForm = this.formBuilder.group({
                 exerciseid: [this.exercise.exerciseid],
-                name: [{value: this.exercise.name, disabled: this.viewMode}, [Validators.required, Validators.maxLength(100)]],
+                name: [{
+                    value: this.exercise.name,
+                    disabled: this.viewMode
+                }, [Validators.required, Validators.maxLength(100)]],
                 exercisetype: [{value: this.exercise.exercisetype, disabled: this.viewMode}, Validators.required],
                 teamtype: [{value: this.exercise.teamtype, disabled: this.viewMode}, Validators.required],
                 setup: [{value: this.exercise.setup, disabled: this.viewMode}, Validators.maxLength(500)],
@@ -71,7 +74,7 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
         });
     }
 
-    setViewMode(viewMode:boolean) {
+    setViewMode(viewMode: boolean) {
         if (viewMode) {
             Object.values(this.exerciseForm.controls).forEach(function (control) {
                 control.disable();
@@ -86,7 +89,7 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
 
     changeListner(event) {
         if (event.target.files && event.target.files[0]) {
-            var reader:FileReader = new FileReader();
+            var reader: FileReader = new FileReader();
             var image = this.element.nativeElement.querySelector('.exerciseDetail--foto');
             this.graphicError = "";
 
@@ -95,7 +98,7 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
                 return false;
             }
 
-            reader.onload = function (event:any) {
+            reader.onload = function (event: any) {
                 var src = event.target.result;
                 image.src = src;
             };
@@ -103,8 +106,7 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
         }
     }
 
-
-    getExerciseTypStr(exerciseType:string) {
+    getExerciseTypStr(exerciseType: string) {
         return ExerciseTypeUtil.getLabel(exerciseType);
     }
 
@@ -116,7 +118,7 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
 
     }
 
-    save(model:Exercise, isValid:boolean):void {
+    save(model: Exercise, isValid: boolean): void {
         var image = this.element.nativeElement.querySelector('.exerciseDetail--foto');
         this.exercise = this.exerciseForm.value;
         this.exercise.graphic = image.src;
