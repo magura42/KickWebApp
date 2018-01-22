@@ -6,6 +6,7 @@
             <tr>
                 <th>Name</th>
                 <th>Typ</th>
+                <th>Teamtyp</th>
                 <th class="hidden-sm-down">Bemerkung</th>
             </tr>
             </thead>
@@ -14,6 +15,7 @@
                 <tr (tap)="showExerciseDetails(exercise.exerciseid);">
                     <td>{{exercise.name}}</td>
                     <td>{{getExerciseTypStr(exercise.exercisetype)}}</td>
+                    <td>{{exercise.teamtype}}</td>
                     <td class="hidden-sm-down">{{exercise.note}}</td>
                 </tr>
             </ng-container>

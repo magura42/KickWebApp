@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit} from "@angular/core";
+import {AfterViewInit, Component, OnInit} from "@angular/core";
 import {LoginService} from "./service/login.service";
 import {environment} from "../environments/environment";
 import {SessionData} from "./model/sessionData";
@@ -17,10 +17,10 @@ export class AppComponent extends CommonComponent implements OnInit, AfterViewIn
 
     title = 'KickWebApp v0.1';
 
-    sessionData:SessionData;
+    sessionData: SessionData;
 
-    constructor(private pushNotificationService:PushNotificationService, private sw:NgServiceWorker,
-                loginService:LoginService, location:Location, private router:Router) {
+    constructor(private pushNotificationService: PushNotificationService, private sw: NgServiceWorker,
+                loginService: LoginService, location: Location, private router: Router) {
         super(loginService, location);
 
         this.initServiceWorker();
@@ -47,7 +47,7 @@ export class AppComponent extends CommonComponent implements OnInit, AfterViewIn
         });
     }
 
-    initSessionData():void {
+    initSessionData(): void {
         this.loginService.login(environment.username, environment.password).then(sessionData => {
             this.loginService.setSessionData(sessionData);
             this.sessionData = sessionData;

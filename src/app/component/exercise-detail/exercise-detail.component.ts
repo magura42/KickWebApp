@@ -10,6 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ExerciseType} from "../../enum/exerciseType";
 import {ExerciseTypeUtil} from "../../enum/exerciseTypeUtil";
 import {environment} from "../../../environments/environment";
+import {TeamType} from "../../enum/teamType";
 
 @Component({
     selector: 'app-exercise-detail',
@@ -19,9 +20,15 @@ import {environment} from "../../../environments/environment";
 export class ExerciseDetailComponent extends CommonComponent implements OnInit, OnChanges {
 
     enumExerciseType = ExerciseType;
+    enumTeamType = TeamType;
 
     exerciseTypes():Array<string> {
         var keys = Object.keys(this.enumExerciseType);
+        return keys.slice(keys.length / 2);
+    }
+
+    teamTypes():Array<string> {
+        var keys = Object.keys(this.enumTeamType);
         return keys.slice(keys.length / 2);
     }
 
@@ -55,6 +62,7 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
                 exerciseid: [this.exercise.exerciseid],
                 name: [{value: this.exercise.name, disabled: this.viewMode}, [Validators.required, Validators.maxLength(100)]],
                 exercisetype: [{value: this.exercise.exercisetype, disabled: this.viewMode}, Validators.required],
+                teamtype: [{value: this.exercise.teamtype, disabled: this.viewMode}, Validators.required],
                 setup: [{value: this.exercise.setup, disabled: this.viewMode}, Validators.maxLength(500)],
                 execution: [{value: this.exercise.execution, disabled: this.viewMode}, Validators.maxLength(2000)],
                 variants: [{value: this.exercise.variants, disabled: this.viewMode}, Validators.maxLength(500)],
