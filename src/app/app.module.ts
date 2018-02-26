@@ -1,7 +1,7 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {ServiceWorkerModule} from "@angular/service-worker";
-import {NgModule, LOCALE_ID} from "@angular/core";
-import {ReactiveFormsModule, FormsModule} from "@angular/forms";
+import {LOCALE_ID, NgModule} from "@angular/core";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {TabsModule} from "ng2-bootstrap/tabs";
 import {AppRoutingModule} from "./app-routing.module";
@@ -33,6 +33,10 @@ import {DataTablesModule} from "angular-datatables";
 import {AdminGuard} from "./guard/AdminGuard";
 import "hammerjs";
 import "hammer-timejs";
+import {registerLocaleData} from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+
+registerLocaleData(localeDe);
 
 @NgModule({
     declarations: [
