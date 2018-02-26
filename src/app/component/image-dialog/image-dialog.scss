@@ -1,0 +1,12 @@
+@import "../../variables";
+
+.image-dialog {
+
+  &-src {
+    border: 1px solid $dark-grey-color;
+  }
+
+  &-caption {
+    text-align: center;
+  }
+}

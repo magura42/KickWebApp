@@ -82,7 +82,8 @@
                             </div>
 
                             <img class="exerciseDetail--foto img-thumbnail rounded" [src]="exercise.graphic"
-                                 onError="this.src='assets/placeholder_graphic.png';"/>
+                                 onError="this.src='assets/placeholder_graphic.png';"
+                                 (click)="openDialog(exercise.name, exercise.graphic)"/>
 
                             <label [hidden]="viewMode" for="graphicFile" class="btn btn-sm btn-outline-primary">
                                 Bild wählen</label>

@@ -15,9 +15,11 @@
                         </div>
 
                         <img class="clubDetail--logo img-thumbnail rounded" [src]="club.logo"
-                             onError="this.src='src/assets/placeholder_graphic.png';"/>
+                             onError="this.src='src/assets/placeholder_graphic.png';"
+                             (click)="openDialog(club.name, club.logo)"/>
 
-                        <label [hidden]="!isAdmin()" for="logoFile" class="clubDetail--selectLogoLabel btn btn-sm btn-outline-primary">Logo
+                        <label [hidden]="!isAdmin()" for="logoFile"
+                               class="clubDetail--selectLogoLabel btn btn-sm btn-outline-primary">Logo
                             wählen</label>
                         <input class="clubDetail--selectLogo" id="logoFile" *ngIf="isAdmin()" type="file"
                                accept="image/jpeg, image/png"

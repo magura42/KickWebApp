@@ -7,6 +7,7 @@ import {CommonComponent} from "./component/common.component";
 import {Location} from "@angular/common";
 import {NgServiceWorker} from "@angular/service-worker";
 import {PushNotificationService} from "./service/pushNotification.service";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-root',
@@ -20,8 +21,8 @@ export class AppComponent extends CommonComponent implements OnInit, AfterViewIn
     sessionData: SessionData;
 
     constructor(private pushNotificationService: PushNotificationService, private sw: NgServiceWorker,
-                loginService: LoginService, location: Location, private router: Router) {
-        super(loginService, location);
+                loginService: LoginService, location: Location, private router: Router, dialog: MatDialog) {
+        super(loginService, location, dialog);
 
         this.initServiceWorker();
     }

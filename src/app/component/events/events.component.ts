@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Event} from "../../model/event";
 import {DataTablesComponent} from "../dataTables.component";
 import {DataService} from "../../service/data.service";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-events',
@@ -14,20 +15,20 @@ import {DataService} from "../../service/data.service";
 })
 export class EventsComponent extends DataTablesComponent implements OnInit {
 
-    selectedEvent:Event;
+    selectedEvent: Event;
 
-    matches:Event[];
+    matches: Event[];
 
-    trainings:Event[];
+    trainings: Event[];
 
-    tournaments:Event[];
+    tournaments: Event[];
 
-    teamevents:Event[];
+    teamevents: Event[];
 
-    constructor(private router:Router, loginService:LoginService, location:Location, route:ActivatedRoute,
-                private eventService:EventService, private dataService:DataService) {
+    constructor(private router: Router, loginService: LoginService, location: Location, route: ActivatedRoute,
+                private eventService: EventService, private dataService: DataService, dialog: MatDialog) {
 
-        super(loginService, location);
+        super(loginService, location, dialog);
 
         let teamid = route.snapshot.params['teamId'];
         this.eventService.getMatches(teamid).then(matches => {
@@ -69,7 +70,7 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
         this.router.navigate(['/eventdetail']);
     }
 
-    showParticipants4Event(event:Event) {
+    showParticipants4Event(event: Event) {
         this.selectedEvent = event;
     }
 
@@ -83,14 +84,14 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
             return false;
         }
 
-        var event:Event = this.getEvent(type, eventId);
+        var event: Event = this.getEvent(type, eventId);
 
-        var personid:number = this.loginService.getSessionData().personid;
+        var personid: number = this.loginService.getSessionData().personid;
 
         return this.eventService.showButton(state, event, personid);
     }
 
-    private getEvent(type, eventId):Event {
+    private getEvent(type, eventId): Event {
 
         if (type === 'training') {
             return this.trainings.filter(t => t.eventId === eventId)[0];
@@ -105,8 +106,8 @@ export class EventsComponent extends DataTablesComponent implements OnInit {
 
     changeParticipationState(type, eventId, state) {
 
-        var event:Event = this.getEvent(type, eventId);
-        var personid:number = this.loginService.getSessionData().personid;
+        var event: Event = this.getEvent(type, eventId);
+        var personid: number = this.loginService.getSessionData().personid;
 
         this.eventService.changeParticipationState(state, personid, event);
     }

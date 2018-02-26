@@ -1,9 +1,10 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
 import {Event} from "../../model/event";
 import {CommonComponent} from "../common.component";
 import {EventService} from "../../service/event.service";
+import {MatDialog} from "@angular/material";
 
 
 @Component({
@@ -14,12 +15,12 @@ import {EventService} from "../../service/event.service";
 export class EventsOverviewComponent extends CommonComponent implements OnInit {
 
     @Input()
-    teamId:number;
+    teamId: number;
 
-    events:Event[];
+    events: Event[];
 
-    constructor(private eventService:EventService, loginService:LoginService, location:Location) {
-        super(loginService, location);
+    constructor(private eventService: EventService, loginService: LoginService, location: Location, dialog: MatDialog) {
+        super(loginService, location, dialog);
 
     }
 

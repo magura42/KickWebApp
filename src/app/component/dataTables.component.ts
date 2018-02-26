@@ -1,13 +1,14 @@
 import {LoginService} from "../service/login.service";
 import {Location} from "@angular/common";
 import {CommonComponent} from "./common.component";
+import {MatDialog} from "@angular/material";
 
 export class DataTablesComponent extends CommonComponent {
 
-    dtOptions:DataTables.Settings = {};
+    dtOptions: DataTables.Settings = {};
 
-    constructor(loginService:LoginService, location:Location) {
-        super(loginService, location)
+    constructor(loginService: LoginService, location: Location, dialog: MatDialog) {
+        super(loginService, location, dialog)
         this.setDataTablesOption();
     }
 

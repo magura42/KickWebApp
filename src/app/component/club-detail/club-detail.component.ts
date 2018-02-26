@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef} from "@angular/core";
+import {Component, ElementRef, OnInit} from "@angular/core";
 import {Club} from "../../model/club";
 import {ClubService} from "../../service/club.service";
 import {Location} from "@angular/common";
@@ -6,6 +6,7 @@ import {LoginService} from "../../service/login.service";
 import {ActivatedRoute} from "@angular/router";
 import {CommonComponent} from "../common.component";
 import {environment} from "../../../environments/environment";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-club-detail',
@@ -14,13 +15,13 @@ import {environment} from "../../../environments/environment";
 })
 export class ClubDetailComponent extends CommonComponent implements OnInit {
 
-    club:Club;
+    club: Club;
 
     logoError: string = '';
 
-    constructor(private element:ElementRef, loginService:LoginService, private clubService:ClubService, location:Location,
-                private route:ActivatedRoute) {
-        super(loginService, location);
+    constructor(private element: ElementRef, loginService: LoginService, private clubService: ClubService, location: Location,
+                private route: ActivatedRoute, dialog: MatDialog) {
+        super(loginService, location, dialog);
         let id = +this.route.snapshot.params['id'];
         this.clubService.getClub(id).then(club => {
             this.club = club;
@@ -29,7 +30,7 @@ export class ClubDetailComponent extends CommonComponent implements OnInit {
 
     changeListner(event) {
         if (event.target.files && event.target.files[0]) {
-            var reader:FileReader = new FileReader();
+            var reader: FileReader = new FileReader();
             var image = this.element.nativeElement.querySelector('.clubDetail--logo');
             this.logoError = "";
 
@@ -38,7 +39,7 @@ export class ClubDetailComponent extends CommonComponent implements OnInit {
                 return false;
             }
 
-            reader.onload = function (event:any) {
+            reader.onload = function (event: any) {
                 var src = event.target.result;
                 image.src = src;
             };
@@ -49,7 +50,7 @@ export class ClubDetailComponent extends CommonComponent implements OnInit {
     ngOnInit() {
     }
 
-    save():void {
+    save(): void {
         var image = this.element.nativeElement.querySelector('.clubDetail--logo');
         this.club.logo = image.src;
         this.clubService.update(this.club)

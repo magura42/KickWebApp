@@ -6,6 +6,7 @@ import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
 import {Person} from "../../model/person";
 import {DataTablesComponent} from "../dataTables.component";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-team',
@@ -15,17 +16,17 @@ import {DataTablesComponent} from "../dataTables.component";
 })
 export class TeamComponent extends DataTablesComponent implements OnInit {
 
-    config:Object;
+    config: Object;
 
-    team:Team;
+    team: Team;
 
-    coaches:Person[];
+    coaches: Person[];
 
-    players:Person[];
+    players: Person[];
 
-    constructor(private router:Router, location:Location, private teamService:TeamService,
-                private route:ActivatedRoute, loginService:LoginService) {
-        super(loginService, location);
+    constructor(private router: Router, location: Location, private teamService: TeamService,
+                private route: ActivatedRoute, loginService: LoginService, dialog: MatDialog) {
+        super(loginService, location, dialog);
         this.config = {
             toolbar: [
                 ['Source', '-', 'Bold', 'Italic'],
@@ -49,7 +50,7 @@ export class TeamComponent extends DataTablesComponent implements OnInit {
 
     }
 
-    save():void {
+    save(): void {
         this.teamService.update(this.team);
     }
 

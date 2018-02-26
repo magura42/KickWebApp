@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {CommonComponent} from "../common.component";
 import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
@@ -6,6 +6,7 @@ import {Event} from "../../model/event";
 import {EventService} from "../../service/event.service";
 import {DataService} from "../../service/data.service";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-event-card',
@@ -15,18 +16,18 @@ import {Router} from "@angular/router";
 export class EventCardComponent extends CommonComponent implements OnInit {
 
     @Input()
-    eventId:number;
+    eventId: number;
 
     @Input()
-    eventType:string;
+    eventType: string;
 
-    event:Event;
+    event: Event;
 
-    personid:number;
+    personid: number;
 
-    constructor(private router:Router, loginService:LoginService, location:Location,
-                private eventService:EventService, private dataService:DataService) {
-        super(loginService, location);
+    constructor(private router: Router, loginService: LoginService, location: Location,
+                private eventService: EventService, private dataService: DataService, dialog: MatDialog) {
+        super(loginService, location, dialog);
         this.personid = this.loginService.getSessionData().personid;
     }
 

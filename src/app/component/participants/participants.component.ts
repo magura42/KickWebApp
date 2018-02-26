@@ -1,9 +1,10 @@
-import {Component, Input, SimpleChanges, OnChanges} from "@angular/core";
+import {Component, Input, OnChanges, SimpleChanges} from "@angular/core";
 import {Location} from "@angular/common";
 import {LoginService} from "../../service/login.service";
 import {EventService} from "../../service/event.service";
 import {Event} from "../../model/event";
 import {CommonComponent} from "../common.component";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-participants',
@@ -13,20 +14,20 @@ import {CommonComponent} from "../common.component";
 export class ParticipantsComponent extends CommonComponent implements OnChanges {
 
     @Input()
-    event:Event;
+    event: Event;
 
     @Input()
-    selectedEvent:Event;
+    selectedEvent: Event;
 
-    isVisible:boolean;
+    isVisible: boolean;
 
-    constructor(loginService:LoginService, location:Location, private eventService:EventService) {
+    constructor(loginService: LoginService, location: Location, private eventService: EventService, dialog: MatDialog) {
 
-        super(loginService, location);
+        super(loginService, location, dialog);
         this.isVisible = false;
     }
 
-    ngOnChanges(changes:SimpleChanges):void {
+    ngOnChanges(changes: SimpleChanges): void {
         if (changes['selectedEvent']) {
             if (typeof this.selectedEvent !== 'undefined' && this.selectedEvent === this.event) {
                 this.showView();
@@ -58,7 +59,7 @@ export class ParticipantsComponent extends CommonComponent implements OnChanges 
         this.eventService.changeParticipationState(state, personid, this.event)
     }
 
-    getEventName():string {
+    getEventName(): string {
         if (this.event.eventType === 'match') {
             return 'Spiel';
         } else if (this.event.eventType === 'tournament') {

@@ -11,6 +11,7 @@ import {ExerciseType} from "../../enum/exerciseType";
 import {ExerciseTypeUtil} from "../../enum/exerciseTypeUtil";
 import {environment} from "../../../environments/environment";
 import {TeamType} from "../../enum/teamType";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-exercise-detail',
@@ -42,9 +43,9 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
 
     graphicError: string = '';
 
-    constructor(private element: ElementRef, private formBuilder: FormBuilder, loginService: LoginService, private exerciseService: ExerciseService, location: Location, route: ActivatedRoute,
+    constructor(private element: ElementRef, private formBuilder: FormBuilder, loginService: LoginService, private exerciseService: ExerciseService, location: Location, route: ActivatedRoute, dialog: MatDialog,
                 private dataService: DataService) {
-        super(loginService, location);
+        super(loginService, location, dialog);
 
         this.config = {
             toolbar: [
@@ -86,6 +87,7 @@ export class ExerciseDetailComponent extends CommonComponent implements OnInit, 
         }
         this.viewMode = viewMode;
     }
+
 
     changeListner(event) {
         if (event.target.files && event.target.files[0]) {

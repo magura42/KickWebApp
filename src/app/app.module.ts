@@ -35,6 +35,25 @@ import "hammerjs";
 import "hammer-timejs";
 import {registerLocaleData} from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import {ImageDialog} from './component/image-dialog/image-dialog';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {MatExpansionModule} from '@angular/material/expansion';
+
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSelectModule,
+    MatTableModule
+} from '@angular/material';
+
 
 registerLocaleData(localeDe);
 
@@ -55,7 +74,8 @@ registerLocaleData(localeDe);
         ParticipantsComponent,
         ExercisesComponent,
         ExerciseDetailComponent,
-        PushNotificationComponent
+        PushNotificationComponent,
+        ImageDialog
     ],
     imports: [
         BrowserModule,
@@ -66,11 +86,26 @@ registerLocaleData(localeDe);
         TabsModule.forRoot(),
         CKEditorModule,
         DataTablesModule,
-        ServiceWorkerModule
+        ServiceWorkerModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatIconModule,
+        MatSelectModule,
+        MatListModule,
+        MatDialogModule,
+        MatExpansionModule
     ],
     providers: [AdminGuard, ClubService, PersonService, LoginService, ExerciseService, EventService, DataService,
         PushNotificationService, {provide: LOCALE_ID, useValue: "de-DE"}],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        ImageDialog
+    ]
 })
 export class AppModule {
 }

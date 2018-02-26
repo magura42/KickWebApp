@@ -6,6 +6,7 @@ import {Exercise} from "../../model/exercise";
 import {DataTablesComponent} from "../dataTables.component";
 import {ExerciseService} from "../../service/exercise.service";
 import {ExerciseTypeUtil} from "../../enum/exerciseTypeUtil";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-exercises',
@@ -14,19 +15,19 @@ import {ExerciseTypeUtil} from "../../enum/exerciseTypeUtil";
 })
 export class ExercisesComponent extends DataTablesComponent {
 
-    exercises:Exercise[];
+    exercises: Exercise[];
 
-    constructor(private router:Router, loginService:LoginService, location:Location, route:ActivatedRoute,
-                private exerciseService:ExerciseService) {
+    constructor(private router: Router, loginService: LoginService, location: Location, route: ActivatedRoute,
+                private exerciseService: ExerciseService, dialog: MatDialog) {
 
-        super(loginService, location);
+        super(loginService, location, dialog);
 
         this.exerciseService.getExercises().then(exercises => {
             this.exercises = exercises;
         });
     }
 
-    getExerciseTypStr(exerciseType:string) {
+    getExerciseTypStr(exerciseType: string) {
         return ExerciseTypeUtil.getLabel(exerciseType);
     }
 

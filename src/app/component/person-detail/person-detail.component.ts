@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef} from "@angular/core";
+import {Component, ElementRef, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {PersonService} from "../../service/person.service";
 import {Person} from "../../model/person";
@@ -6,6 +6,7 @@ import {LoginService} from "../../service/login.service";
 import {Location} from "@angular/common";
 import {CommonComponent} from "../common.component";
 import {environment} from "../../../environments/environment";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-person-detail',
@@ -14,13 +15,13 @@ import {environment} from "../../../environments/environment";
 })
 export class PersonDetailComponent extends CommonComponent implements OnInit {
 
-    person:Person;
+    person: Person;
 
     fotoError: string = '';
 
-    constructor(private element:ElementRef, loginService:LoginService, route:ActivatedRoute,
-                private personService:PersonService, location:Location) {
-        super(loginService, location);
+    constructor(private element: ElementRef, loginService: LoginService, route: ActivatedRoute,
+                private personService: PersonService, location: Location, dialog: MatDialog) {
+        super(loginService, location, dialog);
         let personid = route.snapshot.params['id'];
         this.personService.getPerson(personid).then(person => {
             console.log("person: " + person);
@@ -34,7 +35,7 @@ export class PersonDetailComponent extends CommonComponent implements OnInit {
 
     changeListner(event) {
         if (event.target.files && event.target.files[0]) {
-            var reader:FileReader = new FileReader();
+            var reader: FileReader = new FileReader();
             var image = this.element.nativeElement.querySelector('.personDetail--foto');
             this.fotoError = "";
 
@@ -43,7 +44,7 @@ export class PersonDetailComponent extends CommonComponent implements OnInit {
                 return false;
             }
 
-            reader.onload = function (event:any) {
+            reader.onload = function (event: any) {
                 var src = event.target.result;
                 image.src = src;
             };
@@ -55,7 +56,7 @@ export class PersonDetailComponent extends CommonComponent implements OnInit {
 
     }
 
-    save():void {
+    save(): void {
         var image = this.element.nativeElement.querySelector('.personDetail--foto');
         this.person.foto = image.src;
         this.personService.update(this.person)

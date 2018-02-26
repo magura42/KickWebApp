@@ -3,8 +3,8 @@ import {Location} from "@angular/common";
 import {LoginService} from "../../service/login.service";
 import {CommonComponent} from "../common.component";
 import {PushNotificationService} from "../../service/pushNotification.service";
-import {NgPushRegistration} from "@angular/service-worker";
-import {FormGroup, Validators, FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-push-notification',
@@ -14,10 +14,10 @@ import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 export class PushNotificationComponent extends CommonComponent implements OnInit {
 
 
-    pushNotificationForm:FormGroup;
+    pushNotificationForm: FormGroup;
 
-    constructor(formBuilder:FormBuilder, private pushNotificationService:PushNotificationService, loginService:LoginService, location:Location) {
-        super(loginService, location);
+    constructor(formBuilder: FormBuilder, private pushNotificationService: PushNotificationService, loginService: LoginService, location: Location, dialog: MatDialog) {
+        super(loginService, location, dialog);
 
         this.pushNotificationForm = formBuilder.group({
             pushTitle: ['', [Validators.required, Validators.maxLength(20)]],
@@ -28,7 +28,7 @@ export class PushNotificationComponent extends CommonComponent implements OnInit
     ngOnInit() {
     }
 
-    send(msg:string, title:string):void {
+    send(msg: string, title: string): void {
         this.pushNotificationService.sendPushMsg(msg, title);
     }
 
